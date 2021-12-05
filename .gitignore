@@ -1,0 +1,13 @@
+.idea
+*.iml
+out
+gen
+*.hprof
+
+build
+**/build/
+/.gradle/
+**/.gradle/
+
+/local.properties
+/8257B447.gpg
