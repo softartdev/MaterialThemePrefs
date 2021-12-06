@@ -1,3 +1,3 @@
-package com.softartdev.library
+package com.softartdev.themepref
 
 expect fun getPlatformName(): String

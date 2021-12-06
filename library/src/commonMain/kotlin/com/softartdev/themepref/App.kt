@@ -1,4 +1,4 @@
-package com.softartdev.library
+package com.softartdev.themepref
 
 import androidx.compose.material.Text
 import androidx.compose.material.Button

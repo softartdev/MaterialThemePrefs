@@ -1,4 +1,4 @@
-package com.softartdev.library
+package com.softartdev.themepref
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable

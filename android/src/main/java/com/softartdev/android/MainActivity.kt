@@ -1,6 +1,6 @@
 package com.softartdev.android
 
-import com.softartdev.library.App
+import com.softartdev.themepref.App
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
