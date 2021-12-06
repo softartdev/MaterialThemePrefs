@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     id("com.android.library")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 group = "com.softartdev"
@@ -22,6 +23,7 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                api("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
             }
         }
         val commonTest by getting {
@@ -56,4 +58,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+multiplatformResources {
+    multiplatformResourcesPackage = "com.softartdev.themepref" // required
 }
