@@ -9,4 +9,5 @@
     <string name="cancel">Отмена</string>
     <string name="set_by_byttery_saver">Автоматически</string>
     <string name="error_title">Ошибка</string>
+    <string name="ok">OK</string>
 </resources>

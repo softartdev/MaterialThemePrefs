@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.compose
 
 plugins {
@@ -24,6 +25,8 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
                 api("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
+                api("org.jetbrains.compose.material:material:$composeVersion")
+                api("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
             }
         }
         val commonTest by getting {
