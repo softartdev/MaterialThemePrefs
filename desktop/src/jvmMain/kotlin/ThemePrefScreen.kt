@@ -14,6 +14,7 @@ import com.softartdev.themepref.ThemeEnum
 
 @Composable
 fun SampleApp() {
+    val writePref: (ThemeEnum) -> Unit = { /*TODO*/ }
     val dialogHolder: DialogHolder = remember { DialogHolder() }
     val darkThemeState: MutableState<ThemeEnum> = remember { mutableStateOf(ThemeEnum.SystemDefault) }
     val materialThemeColors = when (darkThemeState.value) {
@@ -23,7 +24,7 @@ fun SampleApp() {
     }
     MaterialTheme(colors = materialThemeColors) {
         SettingsScreenBody(
-            changeTheme = { dialogHolder.showThemeChange(darkThemeState) },
+            changeTheme = { dialogHolder.showThemeChange(darkThemeState, writePref) },
             showDialogIfNeed = dialogHolder.showDialogIfNeed,
             currentThemeTextContent = { Text(text = darkThemeState.value.toLocalizedString()) },
         )
