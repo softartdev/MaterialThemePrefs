@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterialApi::class, ExperimentalMaterialApi::class)
+@file:OptIn(ExperimentalMaterialApi::class, ExperimentalMaterialApi::class, ExperimentalMaterialApi::class)
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
 package com.softartdev.themepref
