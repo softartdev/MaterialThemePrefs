@@ -1,9 +1,8 @@
 @file:OptIn(ExperimentalMaterialApi::class, ExperimentalMaterialApi::class)
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
-package com.softartdev.desktop
+package com.softartdev.themepref
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,8 +14,6 @@ import androidx.compose.material.icons.filled.SettingsBrightness
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.softartdev.themepref.MR
-import com.softartdev.themepref.composeLocalized
 
 @Composable
 fun SettingsScreenBody(
@@ -77,7 +74,3 @@ fun Preference(
     secondaryText = secondaryText,
     trailing = trailing
 )
-
-@Preview
-@Composable
-fun PreviewSettingsScreenBody() = SettingsScreenBody { Text(MR.strings.system_default.composeLocalized()) }

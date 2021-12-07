@@ -4,9 +4,8 @@
 )
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
-package com.softartdev.desktop
+package com.softartdev.themepref
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
@@ -16,9 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.softartdev.themepref.ThemeEnum
-import com.softartdev.themepref.MR
-import com.softartdev.themepref.composeLocalized
 
 @Stable
 class DialogHolder {
@@ -86,12 +82,3 @@ fun RadioDialogContent(darkThemeState: MutableState<ThemeEnum>) = Column(Modifie
         }
     }
 }
-
-@Preview
-@Composable
-fun PreviewErrorDialog() = PreviewDialog { ThemeDialog() }
-
-@Preview
-@Composable
-fun PreviewDialog(dialogContent: @Composable () -> Unit) =
-    Box(modifier = Modifier.fillMaxSize()) { dialogContent() }

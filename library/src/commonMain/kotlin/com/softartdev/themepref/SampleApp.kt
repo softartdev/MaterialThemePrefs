@@ -1,6 +1,5 @@
 package com.softartdev.desktop
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -10,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.softartdev.themepref.DialogHolder
+import com.softartdev.themepref.SettingsScreenBody
 import com.softartdev.themepref.ThemeEnum
 
 @Composable
@@ -29,10 +30,4 @@ fun SampleApp() {
             currentThemeTextContent = { Text(text = darkThemeState.value.toLocalizedString()) },
         )
     }
-}
-
-@Preview
-@Composable
-fun SampleAppPreview() {
-    SampleApp()
 }
