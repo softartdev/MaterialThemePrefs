@@ -21,12 +21,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
-                api("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
-                api("org.jetbrains.compose.material:material:$composeVersion")
-                api("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
+                implementation("org.jetbrains.compose.material:material:$composeVersion")
+                implementation("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
             }
         }
         val commonTest by getting {
@@ -46,7 +46,7 @@ kotlin {
         }
         val desktopMain by getting {
             dependencies {
-                api(compose.preview)
+                implementation(compose.preview)
             }
         }
         val desktopTest by getting
@@ -54,6 +54,7 @@ kotlin {
 }
 android {
     compileSdk = 31
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 21
         targetSdk = 31
@@ -64,5 +65,5 @@ android {
     }
 }
 multiplatformResources {
-    multiplatformResourcesPackage = "com.softartdev.themepref" // required
+    multiplatformResourcesPackage = "com.softartdev.themepref"
 }

@@ -1,19 +1,16 @@
-package com.softartdev.android
+package com.softartdev.sample
 
-import com.softartdev.themepref.App
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
+import com.softartdev.themepref.App
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
-                App()
-            }
+            App()
         }
     }
 }
