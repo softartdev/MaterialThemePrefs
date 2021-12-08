@@ -36,6 +36,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation("androidx.preference:preference:1.1.1")
             }
         }
         val androidTest by getting {

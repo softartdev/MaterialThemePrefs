@@ -12,9 +12,10 @@ import androidx.compose.runtime.remember
 
 @Composable
 fun App() {
-    val writePref: (ThemeEnum) -> Unit = { /*TODO*/ }
+    val prefHelper: PreferenceHelper = rememberPreferenceHelper()
+    val writePref: (ThemeEnum) -> Unit = prefHelper::themeEnum::set
     val dialogHolder: DialogHolder = remember { DialogHolder() }
-    val darkThemeState: MutableState<ThemeEnum> = remember { mutableStateOf(ThemeEnum.SystemDefault) }
+    val darkThemeState: MutableState<ThemeEnum> = remember { mutableStateOf(prefHelper.themeEnum) }
     val materialThemeColors = when (darkThemeState.value) {
         ThemeEnum.Light -> lightColors()
         ThemeEnum.Dark -> darkColors()
