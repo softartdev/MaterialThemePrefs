@@ -1,4 +1,4 @@
-package com.softartdev.themepref
+package com.softartdev.shared
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -9,6 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.softartdev.themepref.DialogHolder
+import com.softartdev.themepref.PreferenceHelper
+import com.softartdev.themepref.ThemeEnum
+import com.softartdev.themepref.rememberPreferenceHelper
 
 @Composable
 fun App() {

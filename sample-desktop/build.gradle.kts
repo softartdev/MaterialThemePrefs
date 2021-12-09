@@ -19,7 +19,7 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
-                implementation(project(":library"))
+                implementation(project(":sample-shared"))
                 implementation(compose.desktop.currentOs)
             }
         }

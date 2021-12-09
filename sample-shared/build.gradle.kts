@@ -1,14 +1,11 @@
+import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.compose
 
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     id("com.android.library")
-    id("dev.icerock.mobile.multiplatform-resources")
 }
-
-group = "com.softartdev"
-version = "1.0"
 
 kotlin {
     android()
@@ -20,28 +17,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(project(":library"))
+                implementation("org.jetbrains.compose.material:material:$composeVersion")
+                implementation("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
             }
         }
-        val commonTest by getting {
+        val desktopMain by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(compose.preview)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation("androidx.preference:preference:1.1.1")
-            }
-        }
-        val androidTest by getting {
-            dependencies {
-                implementation("junit:junit:4.13.2")
-            }
-        }
-        val desktopTest by getting
     }
 }
 android {
@@ -55,7 +41,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-}
-multiplatformResources {
-    multiplatformResourcesPackage = "com.softartdev.themepref"
 }
