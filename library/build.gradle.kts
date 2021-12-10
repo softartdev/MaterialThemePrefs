@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.compose
 
 plugins {
@@ -23,6 +24,8 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation("org.jetbrains.compose.material:material:$composeVersion")
+                implementation("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
             }
         }

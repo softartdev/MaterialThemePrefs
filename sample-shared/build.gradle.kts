@@ -1,4 +1,3 @@
-import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.compose
 
 plugins {
@@ -18,9 +17,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":library"))
-                implementation("org.jetbrains.compose.material:material:$composeVersion")
-                implementation("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
-                implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
             }
         }
         val desktopMain by getting {

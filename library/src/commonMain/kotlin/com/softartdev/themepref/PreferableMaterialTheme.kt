@@ -12,13 +12,16 @@ val LocalThemePrefs = staticCompositionLocalOf<ThemePrefs> {
 
 @Composable
 fun PreferableMaterialTheme(
-    content: @Composable () -> Unit
+    content: @Composable PreferableMaterialTheme.() -> Unit
 ) {
     val themePrefs = rememberThemePrefs()
     CompositionLocalProvider(
         LocalThemePrefs provides themePrefs,
     ) {
-        MaterialTheme(colors = themePrefs.colors, content = content)
+        MaterialTheme(
+            colors = themePrefs.colors,
+            content = { PreferableMaterialTheme.content() }
+        )
     }
 }
 

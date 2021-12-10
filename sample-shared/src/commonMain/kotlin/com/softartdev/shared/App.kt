@@ -1,17 +1,24 @@
 package com.softartdev.shared
 
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import com.softartdev.themepref.*
+import com.softartdev.themepref.PreferableMaterialTheme
+import com.softartdev.themepref.SettingsScaffold
+import com.softartdev.themepref.ThemePreferenceItem
+import com.softartdev.themepref.ThemePreferencesCategory
 
 @Composable
 fun App() {
     PreferableMaterialTheme {
-        val themePrefs = LocalThemePrefs.current
-        SettingsScreenBody(
-            changeTheme = themePrefs::showDialog,
-            showDialogIfNeed = { themePrefs.dialogHolder.showDialogIfNeed() },
-            currentThemeTextContent = { Text(text = themePrefs.darkThemeState.value.toLocalizedString()) },
-        )
+        SettingsScaffold {
+            Box {
+                Column {
+                    ThemePreferencesCategory()
+                    ThemePreferenceItem()
+                }
+                themePrefs.showDialogIfNeed()
+            }
+        }
     }
 }

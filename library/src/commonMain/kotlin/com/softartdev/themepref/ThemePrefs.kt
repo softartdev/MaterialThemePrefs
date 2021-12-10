@@ -27,6 +27,9 @@ class ThemePrefs(
         darkThemeState = darkThemeState,
         writePref = preferenceHelper::themeEnum::set
     )
+
+    @Composable
+    fun showDialogIfNeed() = dialogHolder.showDialogIfNeed()
 }
 
 @Composable
