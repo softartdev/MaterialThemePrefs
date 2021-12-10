@@ -3,7 +3,6 @@ package com.softartdev.themepref
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.preference.PreferenceManager
 
@@ -19,7 +18,7 @@ class AndroidPreferenceHelper(context: Context) : PreferenceHelper {
 }
 
 @Composable
-actual fun rememberPreferenceHelper(): PreferenceHelper {
+actual fun obtainPreferenceHelper(): PreferenceHelper {
     val context = LocalContext.current.applicationContext
-    return remember(context) { AndroidPreferenceHelper(context) }
+    return AndroidPreferenceHelper(context)
 }

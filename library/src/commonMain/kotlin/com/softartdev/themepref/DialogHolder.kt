@@ -1,7 +1,4 @@
-@file:OptIn(
-    ExperimentalMaterialApi::class, ExperimentalStdlibApi::class, ExperimentalMaterialApi::class,
-    ExperimentalMaterialApi::class, ExperimentalMaterialApi::class
-)
+@file:OptIn(ExperimentalMaterialApi::class, ExperimentalStdlibApi::class)
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
 package com.softartdev.themepref
@@ -16,20 +13,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 
-@Stable
 class DialogHolder {
-    var showDialog: Boolean by mutableStateOf(false)
-    val dismissDialog = { showDialog = false }
-    var dialogContent: @Composable () -> Unit = {}
-    val showDialogIfNeed: @Composable () -> Unit = { if (showDialog) dialogContent() }
+    private var dialogContent: @Composable () -> Unit = {}
+    private var showDialog: Boolean by mutableStateOf(false)
 
     fun showDialog(content: @Composable () -> Unit) {
         dialogContent = content
         showDialog = true
     }
 
+    @Composable
+    fun showDialogIfNeed() {
+        if (showDialog) dialogContent()
+    }
+
+    fun dismissDialog() {
+        showDialog = false
+    }
+
     fun showThemeChange(darkThemeState: MutableState<ThemeEnum>, writePref: (ThemeEnum) -> Unit) = showDialog {
-        ThemeDialog(darkThemeState, writePref, dismissDialog)
+        ThemeDialog(darkThemeState, writePref, ::dismissDialog)
     }
 }
 
@@ -44,14 +47,18 @@ fun ThemeDialog(
         onDismissRequest = dismissDialog,
         title = { Text(MR.strings.choose_theme.composeLocalized()) },
         text = { RadioDialogContent(darkThemeState) },
-        confirmButton = { Button(onClick = {
-            writePref(darkThemeState.value)
-            dismissDialog()
-        }) { Text(MR.strings.ok.composeLocalized()) } },
-        dismissButton = { Button(onClick = {
-            darkThemeState.value = previousState
-            dismissDialog()
-        }) { Text(MR.strings.cancel.composeLocalized()) } },
+        confirmButton = {
+            Button(onClick = {
+                writePref(darkThemeState.value)
+                dismissDialog()
+            }) { Text(MR.strings.ok.composeLocalized()) }
+        },
+        dismissButton = {
+            Button(onClick = {
+                darkThemeState.value = previousState
+                dismissDialog()
+            }) { Text(MR.strings.cancel.composeLocalized()) }
+        },
     )
 }
 

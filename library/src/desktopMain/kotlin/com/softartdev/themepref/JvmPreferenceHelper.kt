@@ -1,8 +1,7 @@
 package com.softartdev.themepref
 
-import java.util.prefs.Preferences
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import java.util.prefs.Preferences
 
 class JvmPreferenceHelper : PreferenceHelper {
 
@@ -16,4 +15,4 @@ class JvmPreferenceHelper : PreferenceHelper {
 }
 
 @Composable
-actual fun rememberPreferenceHelper(): PreferenceHelper = remember { JvmPreferenceHelper() }
+actual fun obtainPreferenceHelper(): PreferenceHelper = JvmPreferenceHelper()

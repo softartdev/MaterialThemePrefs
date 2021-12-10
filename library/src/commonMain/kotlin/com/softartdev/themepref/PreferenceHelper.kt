@@ -12,4 +12,4 @@ interface PreferenceHelper {
 const val THEME_KEY: String = "theme_key"
 
 @Composable
-expect fun rememberPreferenceHelper(): PreferenceHelper
+expect fun obtainPreferenceHelper(): PreferenceHelper
