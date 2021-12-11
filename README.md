@@ -8,6 +8,9 @@ Supported platforms:
 - Android
 - Desktop JVM (MacOS, Linux, Windows)
 
+![Android screenshot](screenshots/android.gif)
+![Desktop screenshot](screenshots/desktop.gif)
+
 ## Usage
 Call composable functions for material theme wrap, preferences items on settings screen, showing dialog for select theme.
 ```kotlin
