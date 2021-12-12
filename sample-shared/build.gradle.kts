@@ -16,7 +16,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":library"))
+                implementation(project(":material-theme-prefs"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)

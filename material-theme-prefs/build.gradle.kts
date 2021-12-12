@@ -6,10 +6,10 @@ plugins {
     id("org.jetbrains.compose")
     id("com.android.library")
     id("dev.icerock.mobile.multiplatform-resources")
+    id("convention.publication")
 }
-
-group = "com.softartdev"
-version = "1.0"
+group = project.property("GROUP").toString()
+version = project.property("VERSION").toString()
 
 kotlin {
     android()

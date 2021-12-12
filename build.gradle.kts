@@ -12,10 +12,6 @@ buildscript {
         classpath("dev.icerock.moko:resources-generator:${rootProject.extra["moko_resources_version"]}")
     }
 }
-
-group = "com.softartdev"
-version = "1.0"
-
 allprojects {
     repositories {
         google()

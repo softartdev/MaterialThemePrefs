@@ -6,8 +6,8 @@ pluginManagement {
     }
 }
 rootProject.name = "MaterialThemePrefs"
-
-include(":library")
+includeBuild("convention-plugins")
+include(":material-theme-prefs")
 include(":sample-shared")
 include(":sample-android")
 include(":sample-desktop")
