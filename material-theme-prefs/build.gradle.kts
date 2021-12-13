@@ -12,7 +12,9 @@ group = project.property("GROUP").toString()
 version = project.property("VERSION").toString()
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
     jvm("desktop") {
         compilations.all {
             kotlinOptions.jvmTarget = "11"
