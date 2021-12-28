@@ -36,6 +36,7 @@ if (secretPropsFile.exists()) {
     ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
     ext["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID")
 }
+ext["signing.secretKeyRingFile"] = "../${ext["signing.secretKeyRingFile"]}" // path from module
 
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
