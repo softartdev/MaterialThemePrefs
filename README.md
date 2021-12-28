@@ -1,7 +1,7 @@
 # Material Theme Preferences
 
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.softartdev/material-theme-prefs)
-[![Build & Publish CI/CD](https://github.com/softartdev/material-theme-prefs/actions/workflows/build_publish.yml/badge.svg)](https://github.com/softartdev/material-theme-prefs/actions/workflows/build_publish.yml)
+[![Build & Publish CI/CD](https://github.com/softartdev/MaterialThemePrefs/actions/workflows/build_publish.yml/badge.svg)](https://github.com/softartdev/MaterialThemePrefs/actions/workflows/build_publish.yml)
 
 Kotlin Multiplatform library for easy switching Dark/Light Material themes on [Compose](https://github.com/JetBrains/compose-jb).
 Supported platforms:
