@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.preference.PreferenceManager
 
 class AndroidPreferenceHelper(context: Context) : PreferenceHelper {
 
-    private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    private val preferences: SharedPreferences =
+        context.getSharedPreferences(context.packageName + "_ThemePref", Context.MODE_PRIVATE)
 
     override var themeEnum: ThemeEnum
         get() = preferences.getInt(THEME_KEY, ThemeEnum.SystemDefault.ordinal).let(ThemeEnum.values()::get)
