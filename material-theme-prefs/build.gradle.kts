@@ -26,8 +26,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-                implementation("org.jetbrains.compose.material:material:$composeVersion")
-                implementation("org.jetbrains.compose.material:material-icons-extended:$composeVersion")
+                implementation(compose.materialIconsExtended)
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
             }
         }
