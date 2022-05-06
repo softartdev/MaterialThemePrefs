@@ -20,13 +20,14 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
+    iosX64("ios")
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-                implementation(compose.materialIconsExtended)
+//                implementation(compose.materialIconsExtended)
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
             }
         }
@@ -46,6 +47,8 @@ kotlin {
             }
         }
         val desktopTest by getting
+        val iosMain by getting
+        val iosTest by getting
     }
 }
 android {
