@@ -13,6 +13,7 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
+    iosX64("ios")
     sourceSets {
         val commonMain by getting {
             dependencies {
