@@ -1,5 +1,5 @@
 buildscript {
-    extra["moko_resources_version"] = "0.19.1"
+    extra["moko_resources_version"] = "0.20.0"
     repositories {
         gradlePluginPortal()
         google()
