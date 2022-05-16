@@ -11,7 +11,7 @@ fun main() {
     val args = emptyArray<String>()
     memScoped {
         val argc = args.size + 1
-        val argv = (arrayOf("MokoKotlinApp") + args).map { it.cstr.ptr }.toCValues()
+        val argv = (arrayOf("SampleApp") + args).map { it.cstr.ptr }.toCValues()
         autoreleasepool {
             UIApplicationMain(argc, argv, null, NSStringFromClass(AppDelegate))
         }

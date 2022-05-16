@@ -29,7 +29,7 @@ class AppDelegate : UIResponder, UIApplicationDelegateProtocol {
             screen = UIScreen.mainScreen
             val storyboard = UIStoryboard.storyboardWithName(name = "Main", bundle = null)
             val initialViewController = storyboard.instantiateViewControllerWithIdentifier(
-                identifier = "com.softartdev.shared.LabelViewController"
+                identifier = "LabelViewController"
             )
             rootViewController = initialViewController
             makeKeyAndVisible()

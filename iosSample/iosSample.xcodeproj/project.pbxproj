@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75D38AF02831DB26002264D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D38AEF2831DB26002264D6 /* AppDelegate.swift */; };
-		75D38AF22831DB26002264D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D38AF12831DB26002264D6 /* SceneDelegate.swift */; };
-		75D38AF42831DB26002264D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D38AF32831DB26002264D6 /* ViewController.swift */; };
 		75D38AF72831DB26002264D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D38AF52831DB26002264D6 /* Main.storyboard */; };
 		75D38AF92831DB27002264D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75D38AF82831DB27002264D6 /* Assets.xcassets */; };
 		75D38AFC2831DB27002264D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D38AFA2831DB27002264D6 /* LaunchScreen.storyboard */; };
@@ -17,9 +14,6 @@
 
 /* Begin PBXFileReference section */
 		75D38AEC2831DB26002264D6 /* iosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		75D38AEF2831DB26002264D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		75D38AF12831DB26002264D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		75D38AF32831DB26002264D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		75D38AF62831DB26002264D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75D38AF82831DB27002264D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75D38AFB2831DB27002264D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,9 +50,6 @@
 		75D38AEE2831DB26002264D6 /* iosSample */ = {
 			isa = PBXGroup;
 			children = (
-				75D38AEF2831DB26002264D6 /* AppDelegate.swift */,
-				75D38AF12831DB26002264D6 /* SceneDelegate.swift */,
-				75D38AF32831DB26002264D6 /* ViewController.swift */,
 				75D38AF52831DB26002264D6 /* Main.storyboard */,
 				75D38AF82831DB27002264D6 /* Assets.xcassets */,
 				75D38AFA2831DB27002264D6 /* LaunchScreen.storyboard */,
@@ -74,9 +65,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75D38B002831DB27002264D6 /* Build configuration list for PBXNativeTarget "iosSample" */;
 			buildPhases = (
-				75D38AE82831DB26002264D6 /* Sources */,
+				75D38B032831E5C0002264D6 /* Compile Kotlin */,
 				75D38AE92831DB26002264D6 /* Frameworks */,
 				75D38AEA2831DB26002264D6 /* Resources */,
+				75D38B042831E654002264D6 /* mokoResources */,
 			);
 			buildRules = (
 			);
@@ -133,18 +125,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		75D38AE82831DB26002264D6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		75D38B032831E5C0002264D6 /* Compile Kotlin */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
-				75D38AF42831DB26002264D6 /* ViewController.swift in Sources */,
-				75D38AF02831DB26002264D6 /* AppDelegate.swift in Sources */,
-				75D38AF22831DB26002264D6 /* SceneDelegate.swift in Sources */,
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Kotlin";
+			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ..\n\n./gradlew linkDebugExecutableIosSimulatorArm64\n\ncp sample-ios-kexe/build/bin/iosSimulatorArm64/debugExecutable/sample-ios-kexe.kexe \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\n";
 		};
-/* End PBXSourcesBuildPhase section */
+		75D38B042831E654002264D6 /* mokoResources */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = mokoResources;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :sample-ios-kexe:copyResourcesDebugExecutableIosSimulatorArm64 \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=$BUILT_PRODUCTS_DIR \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=$CONTENTS_FOLDER_PATH\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXVariantGroup section */
 		75D38AF52831DB26002264D6 /* Main.storyboard */ = {
@@ -291,7 +311,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -319,7 +339,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
