@@ -13,7 +13,7 @@ fun main() {
         val argc = args.size + 1
         val argv = (arrayOf("SampleApp") + args).map { it.cstr.ptr }.toCValues()
         autoreleasepool {
-            UIApplicationMain(argc, argv, null, NSStringFromClass(AppDelegate))
+            UIApplicationMain(argc, argv, null, NSStringFromClass(SkikoAppDelegate))
         }
     }
 }
