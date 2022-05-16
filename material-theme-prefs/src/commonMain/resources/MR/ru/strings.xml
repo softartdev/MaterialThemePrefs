@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="material_theme_prefs" translatable="false">Material Theme Preferences</string>
     <string name="settings">Настройки</string>
     <string name="theme">Тема</string>
     <string name="choose_theme">Выбор темы</string>
