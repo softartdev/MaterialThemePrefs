@@ -135,7 +135,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ..\n\n./gradlew linkDebugExecutableIosX64\n\ncp sample-ios/build/bin/uikitX64/debugExecutable/sample-ios.kexe \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\n";
+			shellScript = "cd ..\n\n./gradlew linkDebugExecutableUikitX64\n\ncp sample-ios/build/bin/uikitX64/debugExecutable/sample-ios.kexe \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\n";
 		};
 		75D38B042831E654002264D6 /* mokoResources */ = {
 			isa = PBXShellScriptBuildPhase;
