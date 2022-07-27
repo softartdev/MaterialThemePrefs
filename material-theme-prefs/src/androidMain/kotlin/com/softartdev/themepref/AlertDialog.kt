@@ -1,10 +1,8 @@
 package com.softartdev.themepref
 
 import androidx.compose.material.AlertDialog
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 actual fun AlertDialog(
     title: @Composable (() -> Unit)?,

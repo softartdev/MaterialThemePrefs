@@ -1,4 +1,3 @@
-import org.jetbrains.compose.ComposeBuildConfig.composeVersion
 import org.jetbrains.compose.compose
 
 plugins {
@@ -27,7 +26,6 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
-//                implementation(compose.materialIconsExtended)
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
             }
         }
@@ -62,6 +60,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    namespace = "com.softartdev.themepref"
 }
 multiplatformResources {
     multiplatformResourcesPackage = "com.softartdev.themepref"

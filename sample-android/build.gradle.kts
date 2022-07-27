@@ -21,9 +21,10 @@ android {
             isMinifyEnabled = false
         }
     }
+    namespace = "com.softartdev.sample"
 }
 dependencies {
     implementation(project(":sample-shared"))
-    implementation("androidx.activity:activity-compose:1.5.0")
+    implementation("androidx.activity:activity-compose:1.5.1")
     implementation("androidx.appcompat:appcompat:1.4.2")
 }
