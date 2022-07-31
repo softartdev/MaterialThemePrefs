@@ -6,11 +6,11 @@ package com.softartdev.themepref
 import androidx.compose.foundation.clickable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Brightness4
-import androidx.compose.material.icons.filled.SettingsBrightness
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.softartdev.themepref.icons.Brightness4
+import com.softartdev.themepref.icons.SettingsBrightness
 
 @Composable
 fun ThemePreferencesCategory() = PreferenceCategory(

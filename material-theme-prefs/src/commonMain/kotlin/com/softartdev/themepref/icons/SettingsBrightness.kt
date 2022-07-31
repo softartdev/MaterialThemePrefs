@@ -1,5 +1,5 @@
-//TODO remove after release compose.materialIconsExtended for ios-targets
-package androidx.compose.material.icons.filled
+//TODO use from compose.materialIconsExtended after release for ios-targets
+package com.softartdev.themepref.icons
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.materialIcon
