@@ -21,13 +21,10 @@ android {
             isMinifyEnabled = false
         }
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.1"
-    }
     namespace = "com.softartdev.sample"
 }
 dependencies {
     implementation(project(":sample-shared"))
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.activity:activity-compose:1.6.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
 }
