@@ -6,6 +6,7 @@
 Kotlin Multiplatform library for easy switching Dark/Light Material themes on [Compose](https://github.com/JetBrains/compose-jb).
 Supported platforms:
 - Android
+- iOS
 - Desktop JVM (MacOS, Linux, Windows)
 
 ![Android screenshot](screenshots/android.gif)
@@ -31,13 +32,13 @@ fun App() = PreferableMaterialTheme { // provides composition locals
 ## Installation
 The latest release is available on [Maven Central](https://repo1.maven.org/maven2/io/github/softartdev/material-theme-prefs/).
 ### Gradle
-- Add the Maven Central repository if it is not already there:
+1. Add the Maven Central repository if it is not already there:
 ```kotlin
 repositories {
     mavenCentral()
 }
 ```
-- In multiplatform projects, add a dependency to the commonMain source set dependencies
+2. In multiplatform projects, add a dependency to the commonMain source set dependencies
 ```kotlin
 commonMain {
     dependencies {
