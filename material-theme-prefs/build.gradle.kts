@@ -39,7 +39,7 @@ kotlin {
                 implementation("androidx.preference:preference:1.2.0")
             }
         }
-        val androidTest by getting {
+        val androidInstrumentedTest by getting {
             dependencies {
                 implementation("junit:junit:4.13.2")
             }
