@@ -9,13 +9,14 @@ group = project.property("GROUP").toString()
 version = project.property("VERSION").toString()
 
 kotlin {
-    android {
-        publishLibraryVariants("release", "debug")
-    }
+    jvmToolchain(11)
     jvm("desktop") {
         compilations.all {
             kotlinOptions.jvmTarget = "11"
         }
+    }
+    android {
+        publishLibraryVariants("release", "debug")
     }
     iosX64()
     iosArm64()
@@ -76,11 +77,35 @@ android {
         targetSdk = 33
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     namespace = "com.softartdev.themepref"
 }
 multiplatformResources {
     multiplatformResourcesPackage = "com.softartdev.themepref"
+}
+//TODO try to remove after update moko-resources version > 0.20.1
+tasks.named("desktopProcessResources") {
+    dependsOn(":material-theme-prefs:generateMRdesktopMain")
+    dependsOn(":material-theme-prefs:generateMRcommonMain")
+}
+tasks.named("iosX64ProcessResources") {
+    dependsOn(":material-theme-prefs:generateMRiosX64Main")
+    dependsOn(":material-theme-prefs:generateMRcommonMain")
+}
+tasks.named("iosSimulatorArm64ProcessResources") {
+    dependsOn(":material-theme-prefs:generateMRiosSimulatorArm64Main")
+    dependsOn(":material-theme-prefs:generateMRcommonMain")
+}
+tasks.named("desktopSourcesJar") {
+    dependsOn(":material-theme-prefs:generateMRdesktopMain")
+    dependsOn(":material-theme-prefs:generateMRcommonMain")
+}
+tasks.named("sourcesJar") {
+    dependsOn(":material-theme-prefs:generateMRandroidMain")
+    dependsOn(":material-theme-prefs:generateMRdesktopMain")
+    dependsOn(":material-theme-prefs:generateMRiosX64Main")
+    dependsOn(":material-theme-prefs:generateMRiosArm64Main")
+    dependsOn(":material-theme-prefs:generateMRiosSimulatorArm64Main")
 }

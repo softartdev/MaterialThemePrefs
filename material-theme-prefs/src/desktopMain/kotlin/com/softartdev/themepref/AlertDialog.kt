@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 
 @Composable
 actual fun AlertDialog(
-    title: @Composable (() -> Unit)?,
-    text: @Composable (() -> Unit)?,
+    title: @Composable () -> Unit,
+    text: @Composable () -> Unit,
     confirmButton: @Composable () -> Unit,
-    dismissButton: @Composable (() -> Unit)?,
+    dismissButton: @Composable () -> Unit,
     onDismissRequest: () -> Unit
 ) = AlertDialog(
     title = title,
@@ -23,8 +23,8 @@ actual fun AlertDialog(
 
 @Composable
 actual fun AlertDialog(
-    title: @Composable (() -> Unit)?,
-    text: @Composable (() -> Unit)?,
+    title: @Composable () -> Unit,
+    text: @Composable () -> Unit,
     buttons: @Composable () -> Unit,
     onDismissRequest: () -> Unit
 ) = AlertDialog(

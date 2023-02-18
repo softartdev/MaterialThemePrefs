@@ -1,16 +1,16 @@
 package com.softartdev.themepref
 
-import androidx.compose.material.AlertDialog
 import androidx.compose.runtime.Composable
+import com.softartdev.themepref.dialog.CustomDialog
 
 @Composable
 actual fun AlertDialog(
-    title: @Composable (() -> Unit)?,
-    text: @Composable (() -> Unit)?,
+    title: @Composable () -> Unit,
+    text: @Composable () -> Unit,
     confirmButton: @Composable () -> Unit,
-    dismissButton: @Composable (() -> Unit)?,
+    dismissButton: @Composable () -> Unit,
     onDismissRequest: () -> Unit
-) = AlertDialog(
+) = CustomDialog(
     title = title,
     text = text,
     confirmButton = confirmButton,
@@ -20,11 +20,11 @@ actual fun AlertDialog(
 
 @Composable
 actual fun AlertDialog(
-    title: @Composable (() -> Unit)?,
-    text: @Composable (() -> Unit)?,
+    title: @Composable () -> Unit,
+    text: @Composable () -> Unit,
     buttons: @Composable () -> Unit,
     onDismissRequest: () -> Unit
-) = AlertDialog(
+) = CustomDialog(
     title = title,
     text = text,
     buttons = buttons,

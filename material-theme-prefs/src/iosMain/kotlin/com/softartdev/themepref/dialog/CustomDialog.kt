@@ -1,30 +1,36 @@
-package com.softartdev.themepref
+package com.softartdev.themepref.dialog
 
-import androidx.compose.material.AlertDialog
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 
 @Composable
-actual fun AlertDialog(
+fun CustomDialog(
     title: @Composable () -> Unit,
     text: @Composable () -> Unit,
     confirmButton: @Composable () -> Unit,
     dismissButton: @Composable () -> Unit,
     onDismissRequest: () -> Unit
-) = AlertDialog(
+) = CustomDialog(
     title = title,
     text = text,
-    confirmButton = confirmButton,
-    dismissButton = dismissButton,
+    buttons = {
+        Row(horizontalArrangement = Arrangement.spacedBy(space = 8.dp)) {
+            dismissButton()
+            confirmButton()
+        }
+    },
     onDismissRequest = onDismissRequest
 )
 
 @Composable
-actual fun AlertDialog(
+fun CustomDialog(
     title: @Composable () -> Unit,
     text: @Composable () -> Unit,
     buttons: @Composable () -> Unit,
     onDismissRequest: () -> Unit
-) = AlertDialog(
+) = CustomDialogContent(
     title = title,
     text = text,
     buttons = buttons,

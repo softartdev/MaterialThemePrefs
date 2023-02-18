@@ -1,9 +1,10 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     id("dev.icerock.mobile.multiplatform-resources")
 }
-
 val binConfig: org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit = {
     binaries {
         executable {
@@ -16,7 +17,6 @@ val binConfig: org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> U
         }
     }
 }
-
 kotlin {
     iosX64("uikitX64", binConfig)
     iosArm64("uikitArm64", binConfig)
@@ -46,7 +46,6 @@ kotlin {
         }
     }
 }
-
 kotlin {
     targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
         binaries.all {
@@ -55,7 +54,18 @@ kotlin {
         }
     }
 }
-
 multiplatformResources {
     multiplatformResourcesPackage = "com.sofartdev.sample"
+}
+//TODO try to remove after update moko-resources version > 0.20.1
+tasks.named("uikitSimulatorArm64ProcessResources") {
+    dependsOn("generateMRuikitSimulatorArm64Main")
+    dependsOn("generateMRcommonMain")
+}
+tasks.named("uikitX64ProcessResources") {
+    dependsOn("generateMRuikitX64Main")
+    dependsOn("generateMRcommonMain")
+}
+tasks.withType(KotlinNativeCompile::class.java).all {
+    mustRunAfter("generateMRcommonMain")
 }

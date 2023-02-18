@@ -5,12 +5,13 @@ plugins {
 }
 
 kotlin {
-    android()
+    jvmToolchain(11)
     jvm("desktop") {
         compilations.all {
             kotlinOptions.jvmTarget = "11"
         }
     }
+    android()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -49,8 +50,8 @@ android {
         targetSdk = 33
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     namespace = "com.softartdev.shared"
 }
