@@ -109,4 +109,15 @@ val signAction: Action<Task> = Action {
     dependsOn(":material-theme-prefs:signIosArm64Publication")
 }
 tasks.withType(PublishToMavenLocal::class.java, signAction)
-tasks.named("publishAllPublicationsToSonatypeRepository", signAction)
+sequenceOf(
+    "publishAllPublicationsToSonatypeRepository",
+    "publishKotlinMultiplatformPublicationToSonatypeRepository",
+    "publishAndroidDebugPublicationToSonatypeRepository",
+    "publishAndroidReleasePublicationToSonatypeRepository",
+    "publishDesktopPublicationToSonatypeRepository",
+    "publishIosX64PublicationToSonatypeRepository",
+    "publishIosSimulatorArm64PublicationToSonatypeRepository",
+    "publishIosArm64PublicationToSonatypeRepository"
+).map(tasks::findByName)
+    .filterNotNull()
+    .forEach(signAction::execute)
