@@ -1,5 +1,3 @@
-import org.gradle.jvm.tasks.Jar
-
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
@@ -87,37 +85,3 @@ android {
 multiplatformResources {
     multiplatformResourcesPackage = "com.softartdev.themepref"
 }
-//TODO try to remove after update moko-resources version > 0.20.1
-val generateMRAction: Action<Task> = Action {
-    dependsOn(":material-theme-prefs:generateMRcommonMain")
-    dependsOn(":material-theme-prefs:generateMRdesktopMain")
-    dependsOn(":material-theme-prefs:generateMRandroidMain")
-    dependsOn(":material-theme-prefs:generateMRiosX64Main")
-    dependsOn(":material-theme-prefs:generateMRiosSimulatorArm64Main")
-    dependsOn(":material-theme-prefs:generateMRiosArm64Main")
-}
-sequenceOf(ProcessResources::class, Jar::class, Sign::class).forEach {
-    tasks.withType(it.java, generateMRAction)
-}
-val signAction: Action<Task> = Action {
-    dependsOn(":material-theme-prefs:signKotlinMultiplatformPublication")
-    dependsOn(":material-theme-prefs:signDesktopPublication")
-    dependsOn(":material-theme-prefs:signAndroidDebugPublication")
-    dependsOn(":material-theme-prefs:signAndroidReleasePublication")
-    dependsOn(":material-theme-prefs:signIosX64Publication")
-    dependsOn(":material-theme-prefs:signIosSimulatorArm64Publication")
-    dependsOn(":material-theme-prefs:signIosArm64Publication")
-}
-tasks.withType(PublishToMavenLocal::class.java, signAction)
-sequenceOf(
-    "publishAllPublicationsToSonatypeRepository",
-    "publishKotlinMultiplatformPublicationToSonatypeRepository",
-    "publishAndroidDebugPublicationToSonatypeRepository",
-    "publishAndroidReleasePublicationToSonatypeRepository",
-    "publishDesktopPublicationToSonatypeRepository",
-    "publishIosX64PublicationToSonatypeRepository",
-    "publishIosSimulatorArm64PublicationToSonatypeRepository",
-    "publishIosArm64PublicationToSonatypeRepository"
-).map(tasks::findByName)
-    .filterNotNull()
-    .forEach(signAction::execute)

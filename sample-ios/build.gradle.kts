@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
-
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
@@ -56,17 +54,4 @@ kotlin {
 }
 multiplatformResources {
     multiplatformResourcesPackage = "com.sofartdev.sample"
-}
-//TODO try to remove after update moko-resources version > 0.20.1
-val generateMRAction: Action<Task> = Action {
-    mustRunAfter(":material-theme-prefs:generateMRcommonMain")
-    mustRunAfter(":material-theme-prefs:generateMRiosX64Main")
-    mustRunAfter(":material-theme-prefs:generateMRiosSimulatorArm64Main")
-    mustRunAfter(":material-theme-prefs:generateMRiosArm64Main")
-    mustRunAfter(":sample-ios:generateMRuikitX64Main")
-    mustRunAfter(":sample-ios:generateMRuikitSimulatorArm64Main")
-    mustRunAfter(":sample-ios:generateMRuikitArm64Main")
-}
-sequenceOf(ProcessResources::class, KotlinNativeCompile::class).forEach {
-    tasks.withType(it.java, generateMRAction)
 }
