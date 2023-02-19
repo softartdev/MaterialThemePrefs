@@ -1,3 +1,5 @@
+import org.gradle.jvm.tasks.Jar
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
@@ -86,26 +88,25 @@ multiplatformResources {
     multiplatformResourcesPackage = "com.softartdev.themepref"
 }
 //TODO try to remove after update moko-resources version > 0.20.1
-tasks.named("desktopProcessResources") {
+val generateMRAction: Action<Task> = Action {
+    dependsOn(":material-theme-prefs:generateMRcommonMain")
     dependsOn(":material-theme-prefs:generateMRdesktopMain")
-    dependsOn(":material-theme-prefs:generateMRcommonMain")
-}
-tasks.named("iosX64ProcessResources") {
-    dependsOn(":material-theme-prefs:generateMRiosX64Main")
-    dependsOn(":material-theme-prefs:generateMRcommonMain")
-}
-tasks.named("iosSimulatorArm64ProcessResources") {
-    dependsOn(":material-theme-prefs:generateMRiosSimulatorArm64Main")
-    dependsOn(":material-theme-prefs:generateMRcommonMain")
-}
-tasks.named("desktopSourcesJar") {
-    dependsOn(":material-theme-prefs:generateMRdesktopMain")
-    dependsOn(":material-theme-prefs:generateMRcommonMain")
-}
-tasks.named("sourcesJar") {
     dependsOn(":material-theme-prefs:generateMRandroidMain")
-    dependsOn(":material-theme-prefs:generateMRdesktopMain")
     dependsOn(":material-theme-prefs:generateMRiosX64Main")
-    dependsOn(":material-theme-prefs:generateMRiosArm64Main")
     dependsOn(":material-theme-prefs:generateMRiosSimulatorArm64Main")
+    dependsOn(":material-theme-prefs:generateMRiosArm64Main")
 }
+sequenceOf(ProcessResources::class, Jar::class, Sign::class).forEach {
+    tasks.withType(it.java, generateMRAction)
+}
+val signAction: Action<Task> = Action {
+    dependsOn(":material-theme-prefs:signKotlinMultiplatformPublication")
+    dependsOn(":material-theme-prefs:signDesktopPublication")
+    dependsOn(":material-theme-prefs:signAndroidDebugPublication")
+    dependsOn(":material-theme-prefs:signAndroidReleasePublication")
+    dependsOn(":material-theme-prefs:signIosX64Publication")
+    dependsOn(":material-theme-prefs:signIosSimulatorArm64Publication")
+    dependsOn(":material-theme-prefs:signIosArm64Publication")
+}
+tasks.withType(PublishToMavenLocal::class.java, signAction)
+tasks.named("publishAllPublicationsToSonatypeRepository", signAction)

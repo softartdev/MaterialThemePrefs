@@ -58,14 +58,15 @@ multiplatformResources {
     multiplatformResourcesPackage = "com.sofartdev.sample"
 }
 //TODO try to remove after update moko-resources version > 0.20.1
-tasks.named("uikitSimulatorArm64ProcessResources") {
-    dependsOn("generateMRuikitSimulatorArm64Main")
-    dependsOn("generateMRcommonMain")
+val generateMRAction: Action<Task> = Action {
+    mustRunAfter(":material-theme-prefs:generateMRcommonMain")
+    mustRunAfter(":material-theme-prefs:generateMRiosX64Main")
+    mustRunAfter(":material-theme-prefs:generateMRiosSimulatorArm64Main")
+    mustRunAfter(":material-theme-prefs:generateMRiosArm64Main")
+    mustRunAfter(":sample-ios:generateMRuikitX64Main")
+    mustRunAfter(":sample-ios:generateMRuikitSimulatorArm64Main")
+    mustRunAfter(":sample-ios:generateMRuikitArm64Main")
 }
-tasks.named("uikitX64ProcessResources") {
-    dependsOn("generateMRuikitX64Main")
-    dependsOn("generateMRcommonMain")
-}
-tasks.withType(KotlinNativeCompile::class.java).all {
-    mustRunAfter("generateMRcommonMain")
+sequenceOf(ProcessResources::class, KotlinNativeCompile::class).forEach {
+    tasks.withType(it.java, generateMRAction)
 }
