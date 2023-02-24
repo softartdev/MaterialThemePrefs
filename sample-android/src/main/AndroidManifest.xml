@@ -5,7 +5,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:icon="@android:mipmap/sym_def_app_icon">
         <activity android:name=".MainActivity"
-                  android:exported="true">
+                  android:exported="true"
+                  android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

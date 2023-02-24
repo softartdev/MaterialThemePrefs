@@ -27,6 +27,7 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.preview)
+                implementation(compose.uiTooling)
             }
         }
         val iosX64Main by getting

@@ -1,22 +1,19 @@
 package com.softartdev.shared
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import com.softartdev.themepref.PreferableMaterialTheme
-import com.softartdev.themepref.SettingsScaffold
-import com.softartdev.themepref.ThemePreferenceItem
-import com.softartdev.themepref.ThemePreferencesCategory
+import kotlin.experimental.ExperimentalObjCRefinement
+import kotlin.native.HiddenFromObjC
 
+@OptIn(ExperimentalObjCRefinement::class)
+@HiddenFromObjC
 @Composable
 fun App() = PreferableMaterialTheme { // provides composition locals
-    SettingsScaffold { // includes TopAppBar
-        Box {
-            Column {
-                ThemePreferencesCategory() // subtitle
-                ThemePreferenceItem() // menu item
-            }
-            themePrefs.showDialogIfNeed() // shows when menu item clicked
-        }
+    var showNote: Boolean by remember { mutableStateOf(false) }
+    val onBackClickListener: () -> Unit = { showNote = !showNote }
+    val noteTextState: MutableState<String> = mutableStateOf("Text")
+    when(showNote) {
+        true -> NoteDetailBody(onBackClick = onBackClickListener, textState = noteTextState)
+        else -> SettingsBody(onBackClick = onBackClickListener)
     }
 }
