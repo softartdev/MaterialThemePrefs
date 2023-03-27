@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class)
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
 package com.softartdev.themepref
@@ -9,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun SettingsScaffold(
@@ -22,7 +22,7 @@ fun SettingsScaffold(
 @Composable
 fun SettingsTopAppBar(
     onBackClick: () -> Unit = {},
-    localizedText: String = MR.strings.settings.composeLocalized(),
+    localizedText: String = stringResource(MR.strings.settings),
     backVector: ImageVector = Icons.Default.ArrowBack
 ) = TopAppBar(
     title = { Text(localizedText) },

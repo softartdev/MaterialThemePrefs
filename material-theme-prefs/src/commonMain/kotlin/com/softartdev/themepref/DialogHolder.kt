@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.stringResource
 
 class DialogHolder {
     private var dialogContent: @Composable () -> Unit = {}
@@ -45,19 +46,19 @@ fun ThemeDialog(
     val previousState = remember { darkThemeState.value }
     AlertDialog(
         onDismissRequest = dismissDialog,
-        title = { Text(MR.strings.choose_theme.composeLocalized()) },
+        title = { Text(stringResource(MR.strings.choose_theme))},
         text = { RadioDialogContent(darkThemeState) },
         confirmButton = {
             Button(onClick = {
                 writePref(darkThemeState.value)
                 dismissDialog()
-            }) { Text(MR.strings.ok.composeLocalized()) }
+            }) { Text(stringResource(MR.strings.ok)) }
         },
         dismissButton = {
             Button(onClick = {
                 darkThemeState.value = previousState
                 dismissDialog()
-            }) { Text(MR.strings.cancel.composeLocalized()) }
+            }) { Text(stringResource(MR.strings.cancel)) }
         },
     )
 }

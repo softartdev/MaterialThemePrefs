@@ -28,6 +28,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
+                implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
             }
         }
         val commonTest by getting {
