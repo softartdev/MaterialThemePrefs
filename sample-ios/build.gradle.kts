@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
@@ -54,4 +56,8 @@ kotlin {
 }
 multiplatformResources {
     multiplatformResourcesPackage = "com.sofartdev.sample"
+}
+
+tasks.withType<KotlinNativeCompile>().configureEach {
+    dependsOn(":sample-ios:generateMRcommonMain")
 }

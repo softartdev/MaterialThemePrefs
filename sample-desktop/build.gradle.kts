@@ -9,6 +9,7 @@ group = "com.softartdev"
 version = "1.0"
 
 kotlin {
+    jvmToolchain(11)
     jvm {
         compilations.all {
             kotlinOptions.jvmTarget = "11"
