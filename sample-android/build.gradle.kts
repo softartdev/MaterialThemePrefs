@@ -4,11 +4,11 @@ plugins {
     kotlin("android")
 }
 android {
-    compileSdk = 33
+    compileSdk = rootProject.extra["android_compile_sdk_version"] as Int
     defaultConfig {
         applicationId = "com.softartdev.sample"
-        minSdk = 21
-        targetSdk = 33
+        minSdk = rootProject.extra["android_min_sdk_version"] as Int
+        targetSdk = compileSdk
         versionCode = 1
         versionName = "1.0"
     }
@@ -23,6 +23,6 @@ android {
 }
 dependencies {
     implementation(project(":sample-shared"))
-    implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.appcompat:appcompat:1.6.1")
 }

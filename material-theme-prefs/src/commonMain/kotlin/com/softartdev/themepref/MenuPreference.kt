@@ -6,23 +6,23 @@ package com.softartdev.themepref
 import androidx.compose.foundation.clickable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Brightness4
+import androidx.compose.material.icons.filled.SettingsBrightness
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.softartdev.themepref.icons.Brightness4
-import com.softartdev.themepref.icons.SettingsBrightness
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun ThemePreferencesCategory() = PreferenceCategory(
     title = stringResource(MR.strings.theme),
-    vector = Icons.Default.Brightness4
+    vector = Icons.Filled.Brightness4
 )
 
 @Composable
 fun ThemePreferenceItem(themePrefs: ThemePrefs = LocalThemePrefs.current) = PreferenceItem(
     title = stringResource(MR.strings.choose_theme),
-    vector = Icons.Default.SettingsBrightness,
+    vector = Icons.Filled.SettingsBrightness,
     secondaryText = { Text(text = themePrefs.darkThemeState.value.toLocalizedString()) },
     onClick = themePrefs::showDialog
 )
