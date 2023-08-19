@@ -26,7 +26,7 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
                 implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")

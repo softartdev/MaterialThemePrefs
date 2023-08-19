@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class, ExperimentalStdlibApi::class)
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
 package com.softartdev.themepref
@@ -6,7 +5,7 @@ package com.softartdev.themepref
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -84,7 +83,7 @@ fun RadioDialogContent(darkThemeState: MutableState<ThemeEnum>) = Column(Modifie
             )
             Text(
                 text = themeEnum.toLocalizedString(),
-                style = MaterialTheme.typography.body1.merge(),
+                style = MaterialTheme.typography.bodyLarge.merge(),
                 modifier = Modifier.padding(start = 16.dp)
             )
         }

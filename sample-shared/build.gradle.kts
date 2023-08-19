@@ -21,7 +21,7 @@ kotlin {
                 implementation(project(":material-theme-prefs"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
             }
         }
         val desktopMain by getting {

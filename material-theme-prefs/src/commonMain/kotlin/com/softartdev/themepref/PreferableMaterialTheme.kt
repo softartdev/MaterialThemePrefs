@@ -1,6 +1,6 @@
 package com.softartdev.themepref
 
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
@@ -19,7 +19,7 @@ fun PreferableMaterialTheme(
         LocalThemePrefs provides themePrefs,
     ) {
         MaterialTheme(
-            colors = themePrefs.colors,
+            colorScheme = themePrefs.colorScheme,
             content = { PreferableMaterialTheme.content() }
         )
     }

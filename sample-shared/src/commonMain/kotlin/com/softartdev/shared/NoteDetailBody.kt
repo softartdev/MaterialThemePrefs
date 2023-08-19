@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.softartdev.shared
 
 import androidx.compose.foundation.ScrollState
@@ -7,9 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -41,8 +43,8 @@ fun NoteDetailBody(
                 }
             },
         )
-    }) {
-    Box {
+    }) { paddingValues ->
+    Box(modifier = Modifier.padding(paddingValues)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             if (showLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
             TextField(

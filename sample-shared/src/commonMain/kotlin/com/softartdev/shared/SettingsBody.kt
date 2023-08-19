@@ -2,7 +2,9 @@ package com.softartdev.shared
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import com.softartdev.themepref.PreferableMaterialTheme
 import com.softartdev.themepref.SettingsScaffold
 import com.softartdev.themepref.ThemePreferenceItem
@@ -16,7 +18,7 @@ import kotlin.native.HiddenFromObjC
 fun SettingsBody(
     onBackClick: () -> Unit = {}
 ) = SettingsScaffold(onBackClick) { // includes TopAppBar
-    Box {
+    Box(modifier = Modifier.padding(it)) {
         Column {
             ThemePreferencesCategory() // subtitle
             ThemePreferenceItem() // menu item

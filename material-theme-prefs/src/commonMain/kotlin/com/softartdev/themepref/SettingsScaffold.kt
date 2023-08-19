@@ -1,9 +1,10 @@
 @file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.softartdev.themepref
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
