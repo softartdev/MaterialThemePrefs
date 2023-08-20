@@ -25,7 +25,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":material-theme-prefs"))
-                implementation(project(":sample-shared"))
+                implementation(project(":sample:shared"))
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
@@ -59,5 +59,5 @@ multiplatformResources {
 }
 
 tasks.withType<KotlinNativeCompile>().configureEach {
-    dependsOn(":sample-ios:generateMRcommonMain")
+    dependsOn(":sample:ios:generateMRcommonMain")
 }
