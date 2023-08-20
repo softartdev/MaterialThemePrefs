@@ -1,3 +1,5 @@
+rootProject.name = "MaterialThemePrefs"
+
 pluginManagement {
     repositories {
         google()
@@ -5,9 +7,12 @@ pluginManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MaterialThemePrefs"
 includeBuild("convention-plugins")
-include(":material-theme-prefs")
+
+include(":theme:theme-prefs")
+include(":theme:theme-material")
+include(":theme:theme-material3")
+
 include(":sample:shared")
 include(":sample:android")
 include(":sample:desktop")

@@ -1,7 +1,3 @@
-import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.bundling.Jar
-import org.gradle.kotlin.dsl.`maven-publish`
-import org.gradle.kotlin.dsl.signing
 import java.util.*
 
 plugins {
@@ -36,7 +32,7 @@ if (secretPropsFile.exists()) {
     ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
     ext["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID")
 }
-ext["signing.secretKeyRingFile"] = "../${ext["signing.secretKeyRingFile"]}" // path from module
+ext["signing.secretKeyRingFile"] = "../../${ext["signing.secretKeyRingFile"]}" // path from module
 
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")

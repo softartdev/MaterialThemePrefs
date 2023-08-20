@@ -1,21 +1,20 @@
 package com.softartdev.shared
 
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.runtime.*
-import com.softartdev.themepref.PreferableMaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import com.softartdev.shared.material.MaterialApp
+import com.softartdev.shared.material3.Material3App
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 
 @OptIn(ExperimentalObjCRefinement::class)
 @HiddenFromObjC
 @Composable
-fun App() = PreferableMaterialTheme { // provides composition locals
-    var showNote: Boolean by remember { mutableStateOf(false) }
-    val onBackClickListener: () -> Unit = { showNote = !showNote }
-    val noteTextState: MutableState<String> = remember { mutableStateOf(readMe) }
-    val noteScrollState = rememberScrollState()
-    when(showNote) {
-        true -> NoteDetailBody(noteTextState, onBackClickListener, scrollState = noteScrollState)
-        else -> SettingsBody(onBackClick = onBackClickListener)
+fun App() {
+    val showMaterial3: Boolean by remember(AppState::showMaterial3)
+    when(showMaterial3) {
+        true -> Material3App()
+        else -> MaterialApp()
     }
 }

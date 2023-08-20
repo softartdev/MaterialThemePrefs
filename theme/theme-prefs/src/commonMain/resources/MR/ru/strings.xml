@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="material_theme_prefs" translatable="false">Material Theme Preferences</string>
+    <string name="settings">Настройки</string>
+    <string name="theme">Тема</string>
+    <string name="choose_theme">Выбор темы</string>
+    <string name="system_default">Системная</string>
+    <string name="light">Светлая</string>
+    <string name="dark">Тёмная</string>
+    <string name="cancel">Отмена</string>
+    <string name="set_by_byttery_saver">Автоматически</string>
+    <string name="error_title">Ошибка</string>
+    <string name="ok">OK</string>
+    <string name="material_version">Версия Material</string>
+    <string name="switch_to_material_design_2">Переключить на Material Design 2</string>
+    <string name="switch_to_material_design_3">Переключить на Material Design 3</string>
+</resources>
