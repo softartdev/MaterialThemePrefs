@@ -42,7 +42,9 @@ repositories {
 ```kotlin
 commonMain {
     dependencies {
-        implementation("io.github.softartdev:material-theme-prefs:$latestVersion")
+        implementation("io.github.softartdev:theme-material:$latestVersion") // Material Design 2
+        implementation("io.github.softartdev:theme-material3:$latestVersion") // Material Design 3
+        implementation("io.github.softartdev:theme-prefs:$latestVersion") // optional, if you need only preferences
     }
 }
 ```
