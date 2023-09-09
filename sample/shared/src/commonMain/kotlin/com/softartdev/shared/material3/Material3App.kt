@@ -12,9 +12,10 @@ import kotlin.native.HiddenFromObjC
 @HiddenFromObjC
 @Composable
 fun Material3App() = PreferableMaterialTheme { // provides composition locals
-    val showNote: Boolean by remember(AppState::showNote) // provides composition locals
-    when(showNote) {
-        true -> NoteDetailBody()
-        else -> SettingsBody()
+    val screenState: AppState.Screen by remember(AppState::screenState) // provides composition locals
+    when(screenState) {
+        AppState.Screen.Settings -> SettingsBody()
+        AppState.Screen.NoteDetail -> NoteDetailBody()
+        AppState.Screen.Benchmark -> BenchmarkBody()
     }
 }

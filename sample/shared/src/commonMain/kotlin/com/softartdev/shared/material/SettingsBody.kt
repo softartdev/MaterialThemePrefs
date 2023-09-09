@@ -24,7 +24,7 @@ import kotlin.native.HiddenFromObjC
 @HiddenFromObjC
 @Composable
 fun SettingsBody(
-    onBackClick: () -> Unit = { AppState.showNote.value = !AppState.showNote.value },
+    onBackClick: () -> Unit = { AppState.screenState.value = AppState.Screen.NoteDetail },
 ) = SettingsScaffold(onBackClick, barActions()) { // includes TopAppBar
     Box(modifier = Modifier.padding(it)) {
         Column {

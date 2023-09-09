@@ -24,7 +24,7 @@ import kotlin.native.HiddenFromObjC
 @Composable
 fun NoteDetailBody(
     textState: MutableState<String> = remember(AppState::textState),
-    onBackClick: () -> Unit = { AppState.showNote.value = false },
+    onBackClick: () -> Unit = { AppState.screenState.value = AppState.Screen.Settings },
     showLoading: Boolean = true,
     scrollState: ScrollState = remember(AppState::scrollState),
 ) = Scaffold(

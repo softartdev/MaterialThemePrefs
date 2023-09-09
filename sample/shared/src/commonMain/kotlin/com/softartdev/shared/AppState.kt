@@ -14,8 +14,9 @@ import com.softartdev.theme.pref.ThemePrefs
 import dev.icerock.moko.resources.compose.stringResource
 
 object AppState {
+    enum class Screen { Settings, NoteDetail, Benchmark }
     val showMaterial3: MutableState<Boolean> = mutableStateOf(false)
-    val showNote: MutableState<Boolean> = mutableStateOf(false)
+    val screenState: MutableState<Screen> = mutableStateOf(Screen.Settings)
     val textState: MutableState<String> = mutableStateOf(readMe)
     val scrollState: ScrollState = ScrollState(initial = 0)
 
@@ -52,4 +53,5 @@ object AppState {
 
     val changeMaterialCallback: (Boolean) -> Unit = { showMaterial3.value = it }
     val switchMaterialCallback: () -> Unit = { showMaterial3.value = !showMaterial3.value }
+    val switchBenchmarkCallback: () -> Unit = { screenState.value = Screen.Benchmark }
 }

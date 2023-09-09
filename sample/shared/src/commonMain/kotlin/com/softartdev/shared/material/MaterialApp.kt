@@ -12,9 +12,13 @@ import kotlin.native.HiddenFromObjC
 @HiddenFromObjC
 @Composable
 fun MaterialApp() = PreferableMaterialTheme { // provides composition locals
-    val showNote: Boolean by remember(AppState::showNote)
-    when(showNote) {
-        true -> NoteDetailBody()
-        else -> SettingsBody()
+    val screenState: AppState.Screen by remember(AppState::screenState) // provides composition locals
+    when(screenState) {
+        AppState.Screen.Settings -> SettingsBody()
+        AppState.Screen.NoteDetail -> NoteDetailBody()
+        AppState.Screen.Benchmark -> {
+            println(" 🚧 Benchmark not realized for Material Design 2 yet, switch to Material Design 3")
+            AppState.screenState.value = AppState.Screen.Settings
+        }
     }
 }

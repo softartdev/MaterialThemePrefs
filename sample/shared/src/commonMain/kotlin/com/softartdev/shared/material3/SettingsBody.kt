@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.Style
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -24,17 +25,26 @@ import kotlin.native.HiddenFromObjC
 @HiddenFromObjC
 @Composable
 fun SettingsBody(
-    onBackClick: () -> Unit = { AppState.showNote.value = !AppState.showNote.value },
+    onBackClick: () -> Unit = { AppState.screenState.value = AppState.Screen.NoteDetail },
 ) = SettingsScaffold(onBackClick, barActions()) { // includes TopAppBar
     Box(modifier = Modifier.padding(it)) {
         Column {
             ThemePreferencesCategory() // subtitle
             ThemePreferenceItem() // menu item
             Material3SwitchPreferenceItem()
+            BenchmarkPreferenceItem()
         }
         themePrefs.showDialogIfNeed() // shows when menu item clicked
     }
 }
+
+@Composable
+fun BenchmarkPreferenceItem() = PreferenceItem(
+    title = "Benchmark",//TODO stringResource(MR.strings.benchmark),
+    vector = Icons.Filled.Speed,
+    secondaryText = { Text("Check device performance") },
+    onClick = AppState.switchBenchmarkCallback,
+)
 
 @Composable
 fun Material3SwitchPreferenceItem() = PreferenceItem(
