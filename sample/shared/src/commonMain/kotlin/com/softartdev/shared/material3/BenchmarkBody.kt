@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +29,7 @@ fun BenchmarkBody(
 ) = Scaffold(
     topBar = {
         TopAppBar(
-            title = { Text(text = "Title", maxLines = 1) },
+            title = { Text(text = "Benchmark", maxLines = 1) },
             navigationIcon = {
                 IconButton(onClick = onBackClick) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
@@ -49,10 +51,10 @@ fun BenchmarkBody(
                 SuggestionChip({ BenchmarkState.n.value -= 1 }, { Text("-") })
                 SuggestionChip(
                     onClick = { BenchmarkState.runTasks(coroutineContext = coroutineScope.coroutineContext) },
-                    label = { Text("Run tasks") },
+                    label = { Icon(imageVector = Icons.Default.PlayArrow, contentDescription = null) },
                     enabled = !showLoading.value
                 )
-                SuggestionChip(onClick = BenchmarkState::release, { Text("Clear tasks") })
+                SuggestionChip(onClick = BenchmarkState::release, { Icon(Icons.Default.Delete, null) })
             }
             LazyColumn {
                 items(

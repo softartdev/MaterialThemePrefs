@@ -9,12 +9,12 @@ import kotlin.time.Duration.Companion.milliseconds
 object BenchmarkState {
     val n: MutableState<Int> = mutableStateOf(value = 100)
     val tasks: SnapshotStateList<BenchmarkTask> = mutableStateListOf()
-    var parallelDispatcher: CloseableCoroutineDispatcher = newFixedThreadPoolContext(n.value, "Benchmark")
+    var parallelDispatcher: CoroutineDispatcher = Dispatchers.Default
     val showLoading: State<Boolean> = derivedStateOf { tasks.any { it.percent.value < 100 } }
 
     fun runTasks(coroutineContext: CoroutineContext) {
         if (tasks.isNotEmpty()) return
-        parallelDispatcher = newFixedThreadPoolContext(n.value, "Benchmarks-${n.value}")
+//        parallelDispatcher = newFixedThreadPoolContext(n.value, "Benchmarks-${n.value}")
         for (i in 0 until n.value) {
             val task = BenchmarkTask(id = i)
             tasks.add(task)
@@ -23,7 +23,7 @@ object BenchmarkState {
     }
 
     fun release() {
-        parallelDispatcher.close()
+//        parallelDispatcher.close()
         tasks.clear()
     }
 
