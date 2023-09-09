@@ -3,7 +3,6 @@
 package com.softartdev.shared.material3
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
@@ -12,10 +11,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import com.softartdev.shared.AppState
 import com.softartdev.shared.BenchmarkState
+import com.softartdev.shared.DispatcherType
 import com.softartdev.theme.pref.LocalThemePrefs
-import kotlinx.coroutines.CoroutineScope
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 
@@ -24,8 +24,7 @@ import kotlin.native.HiddenFromObjC
 @Composable
 fun BenchmarkBody(
     onBackClick: () -> Unit = { AppState.screenState.value = AppState.Screen.Settings },
-    showLoading: State<Boolean> = BenchmarkState.showLoading,
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
+    showLoading: State<Boolean> = BenchmarkState.showLoading
 ) = Scaffold(
     topBar = {
         TopAppBar(
@@ -50,29 +49,57 @@ fun BenchmarkBody(
                 SuggestionChip({ BenchmarkState.n.value += 1 }, { Text("+") })
                 SuggestionChip({ BenchmarkState.n.value -= 1 }, { Text("-") })
                 SuggestionChip(
-                    onClick = { BenchmarkState.runTasks(coroutineContext = coroutineScope.coroutineContext) },
+                    onClick = { BenchmarkState.runTasks() },
                     label = { Icon(imageVector = Icons.Default.PlayArrow, contentDescription = null) },
                     enabled = !showLoading.value
                 )
                 SuggestionChip(onClick = BenchmarkState::release, { Icon(Icons.Default.Delete, null) })
             }
-            LazyColumn {
-                items(
-                    count = BenchmarkState.tasks.size,
-                    key = { index -> BenchmarkState.tasks[index].id },
-                    itemContent = { index ->
-                        val percent: Int by remember(
-                            key1 = BenchmarkState.tasks[index].id,
-                            key2 = BenchmarkState.tasks.size
-                        ) { BenchmarkState.tasks[index].percent }
-                        LinearProgressIndicator(
-                            progress = percent / 100f,
-                            color = MaterialTheme.colorScheme.tertiary
-                        )
-                    }
+            BenchmarkState.tasks.forEach { task ->
+                val percent: Int by remember(key1 = task.id) { derivedStateOf { task.percent.value } }
+                LinearProgressIndicator(
+                    progress = percent / 100f,
+                    color = MaterialTheme.colorScheme.tertiary
                 )
             }
+            val workingThreadsCount: Int by remember { derivedStateOf {
+                BenchmarkState.tasks.size - BenchmarkState.tasks.count { it.percent.value == 0 }
+            } }
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalArrangement = Arrangement.Center
+            ) {
+                DispatcherTypeMenu()
+                SuggestionChip({}, { Text("$workingThreadsCount / ${BenchmarkState.n.value}") })
+            }
+            LinearProgressIndicator(
+                progress = workingThreadsCount / 100f,
+                color = MaterialTheme.colorScheme.tertiary
+            )
         }
         LocalThemePrefs.current.showDialogIfNeed()
     }
+}
+
+@Composable
+fun DispatcherTypeMenu() {
+    var expanded by remember { mutableStateOf(false) }
+        SuggestionChip(onClick = { expanded = true }, label = {
+            Text(
+                text = "${BenchmarkState.dispatcherType.value.name} ${if (expanded) "▲" else "▼"}",
+                textAlign = TextAlign.Center
+            )
+        })
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            DispatcherType.entries.forEach {
+                DropdownMenuItem(onClick = {
+                    BenchmarkState.dispatcherType.value = it
+                    expanded = false
+                }, text = { Text(it.name) })
+            }
+        }
 }
