@@ -3,6 +3,8 @@
 package com.softartdev.shared.material3
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
@@ -38,7 +40,10 @@ fun BenchmarkBody(
         )
     }) { paddingValues ->
     Box(modifier = Modifier.padding(paddingValues)) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             if (showLoading.value) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
@@ -62,9 +67,9 @@ fun BenchmarkBody(
                     color = MaterialTheme.colorScheme.tertiary
                 )
             }
-            val workingThreadsCount: Int by remember { derivedStateOf {
-                BenchmarkState.tasks.size - BenchmarkState.tasks.count { it.percent.value == 0 }
-            } }
+            val workingThreadsCount: Int by remember {
+                derivedStateOf { BenchmarkState.tasks.size - BenchmarkState.tasks.count { it.percent.value == 0 } }
+            }
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround,
@@ -85,21 +90,21 @@ fun BenchmarkBody(
 @Composable
 fun DispatcherTypeMenu() {
     var expanded by remember { mutableStateOf(false) }
-        SuggestionChip(onClick = { expanded = true }, label = {
-            Text(
-                text = "${BenchmarkState.dispatcherType.value.name} ${if (expanded) "▲" else "▼"}",
-                textAlign = TextAlign.Center
-            )
-        })
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            DispatcherType.entries.forEach {
-                DropdownMenuItem(onClick = {
-                    BenchmarkState.dispatcherType.value = it
-                    expanded = false
-                }, text = { Text(it.name) })
-            }
+    SuggestionChip(onClick = { expanded = true }, label = {
+        Text(
+            text = "${BenchmarkState.dispatcherType.value.name} ${if (expanded) "▲" else "▼"}",
+            textAlign = TextAlign.Center
+        )
+    })
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = { expanded = false }
+    ) {
+        DispatcherType.entries.forEach {
+            DropdownMenuItem(onClick = {
+                BenchmarkState.dispatcherType.value = it
+                expanded = false
+            }, text = { Text(it.name) })
         }
+    }
 }

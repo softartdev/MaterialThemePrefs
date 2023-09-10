@@ -13,7 +13,8 @@ object BenchmarkState {
     val n: MutableState<Int> = mutableStateOf(value = 100)
     val tasks: SnapshotStateList<BenchmarkTask> = mutableStateListOf()
     var dispatcherType: MutableState<DispatcherType> = mutableStateOf(value = DispatcherType.IO)
-    val showLoading: State<Boolean> = derivedStateOf { tasks.any { it.percent.value < 100 } }
+    val showLoading: State<Boolean> = derivedStateOf { tasks.any(::isWorking) }
+    private fun isWorking(task: BenchmarkTask): Boolean = task.job?.isActive ?: false
 
     val parallelDispatcher: CoroutineDispatcher
         get() = when (dispatcherType.value) {
@@ -26,29 +27,25 @@ object BenchmarkState {
     var supervisorJob: CompletableJob = SupervisorJob()
     var coroutineScope: CoroutineScope = CoroutineScope(parallelDispatcher + supervisorJob)
 
-    fun release() {
-        coroutineScope.cancel()
-        tasks.clear()
-    }
-
     // coroutines parallel execution with dispatcher
     fun runTasks() {
         if (tasks.isNotEmpty()) {
             release()
         }
-        for (i in 0 until n.value) {
-            val task = BenchmarkTask(id = i)
-            tasks.add(task)
-        }
         supervisorJob = SupervisorJob()
         coroutineScope = CoroutineScope(parallelDispatcher + supervisorJob)
-        tasks.forEach {
-            val job = coroutineScope.launch {
-                it.percent.value = 0
-                it.benchmarkRunnable.run()
+        for (i in 0 until n.value) {
+            val task = BenchmarkTask(id = i)
+            task.job = coroutineScope.launch {
+                task.benchmarkRunnable.run()
             }
-            it.job = job
+            tasks.add(task)
         }
+    }
+
+    fun release() {
+        coroutineScope.cancel()
+        tasks.clear()
     }
 
     data class BenchmarkTask(
