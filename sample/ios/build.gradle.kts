@@ -5,15 +5,24 @@ plugins {
     id("org.jetbrains.compose")
     id("dev.icerock.mobile.multiplatform-resources")
 }
+private val hasXcode15: Boolean by lazy {
+    try {
+        val process: Process = ProcessBuilder("xcodebuild", "-version").start()
+        process.inputStream.bufferedReader().use { reader ->
+            process.waitFor() == 0 && reader.readText().startsWith("Xcode 15.")
+        }
+    } catch (t: Throwable) {
+        t.printStackTrace()
+        false
+    }
+}
 val binConfig: org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit = {
     binaries {
         executable {
             entryPoint = "com.softartdev.sample.main"
-            freeCompilerArgs += listOf(
-                "-linker-option", "-framework", "-linker-option", "Metal",
-                "-linker-option", "-framework", "-linker-option", "CoreText",
-                "-linker-option", "-framework", "-linker-option", "CoreGraphics"
-            )
+        }
+        all {
+            if (hasXcode15) linkerOpts += "-ld64" //TODO: remove after update Kotlin >= 1.9.10
         }
     }
 }
@@ -48,14 +57,7 @@ kotlin {
         }
     }
 }
-kotlin {
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        binaries.all {
-            // TODO: the current compose binary surprises LLVM, so disable checks for now.
-            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
-        }
-    }
-}
+
 multiplatformResources {
     multiplatformResourcesPackage = "com.sofartdev.sample"
 }
