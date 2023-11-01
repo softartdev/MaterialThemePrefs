@@ -5,24 +5,11 @@ plugins {
     id("org.jetbrains.compose")
     id("dev.icerock.mobile.multiplatform-resources")
 }
-private val hasXcode15: Boolean by lazy {
-    try {
-        val process: Process = ProcessBuilder("xcodebuild", "-version").start()
-        process.inputStream.bufferedReader().use { reader ->
-            process.waitFor() == 0 && reader.readText().startsWith("Xcode 15.")
-        }
-    } catch (t: Throwable) {
-        t.printStackTrace()
-        false
-    }
-}
+
 val binConfig: org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit = {
     binaries {
         executable {
             entryPoint = "com.softartdev.sample.main"
-        }
-        all {
-            if (hasXcode15) linkerOpts += "-ld64" //TODO: remove after update Kotlin >= 1.9.10
         }
     }
 }
