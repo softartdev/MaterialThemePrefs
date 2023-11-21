@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
 
 plugins {
@@ -6,7 +7,7 @@ plugins {
     id("dev.icerock.mobile.multiplatform-resources")
 }
 
-val binConfig: org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit = {
+val binConfig: KotlinNativeTarget.() -> Unit = {
     binaries {
         executable {
             entryPoint = "com.softartdev.sample.main"
@@ -14,33 +15,20 @@ val binConfig: org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> U
     }
 }
 kotlin {
-    iosX64("uikitX64", binConfig)
-    iosArm64("uikitArm64", binConfig)
-    iosSimulatorArm64("uikitSimulatorArm64", binConfig)
+    iosX64(binConfig)
+    iosArm64(binConfig)
+    iosSimulatorArm64(binConfig)
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":sample:shared"))
-                implementation(project(":theme:theme-material"))
-                implementation(project(":theme:theme-material3"))
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                implementation(compose.material3)
-                implementation(compose.runtime)
-                implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
-            }
-        }
-        val uikitX64Main by getting
-        val uikitArm64Main by getting
-        val uikitSimulatorArm64Main by getting
-        val uikitMain by creating {
-            dependsOn(commonMain)
-            uikitX64Main.dependsOn(this)
-            uikitArm64Main.dependsOn(this)
-            uikitSimulatorArm64Main.dependsOn(this)
-            dependencies {
-            }
+        commonMain.dependencies {
+            implementation(project(":sample:shared"))
+            implementation(project(":theme:theme-material"))
+            implementation(project(":theme:theme-material3"))
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.material3)
+            implementation(compose.runtime)
+            implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
         }
     }
 }

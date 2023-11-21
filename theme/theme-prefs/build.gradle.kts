@@ -15,73 +15,31 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
     }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    applyDefaultHierarchyTemplate()
+
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(compose.runtime)
-                implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
-                implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
-            }
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
+            implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
         }
-        val androidMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-            }
-        }
-        val androidInstrumentedTest by getting {
-            dependsOn(commonTest)
-            dependencies {
-                implementation("junit:junit:4.13.2")
-            }
-        }
-        val desktopMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-            }
-        }
-        val desktopTest by getting {
-            dependsOn(commonTest)
-            dependencies {
-            }
-        }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-            dependencies {
-            }
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-        }
+        androidMain.get().dependsOn(commonMain.get())//TODO remove after update moko-resources > 0.23.0
     }
 }
 android {
     compileSdk = rootProject.extra["android_compile_sdk_version"] as Int
     defaultConfig.minSdk = rootProject.extra["android_min_sdk_version"] as Int
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
+    sourceSets["main"].res.srcDir(File(layout.buildDirectory.get().asFile, "generated/moko/androidMain/res"))
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

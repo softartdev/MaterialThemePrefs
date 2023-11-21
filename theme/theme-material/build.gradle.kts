@@ -14,69 +14,23 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
     }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                api(project(":theme:theme-prefs"))
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                implementation(compose.materialIconsExtended)
-                implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
-            }
+        commonMain.dependencies {
+            api(project(":theme:theme-prefs"))
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.materialIconsExtended)
+            implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        val androidMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-            }
-        }
-        val androidInstrumentedTest by getting {
-            dependsOn(commonTest)
-            dependencies {
-                implementation("junit:junit:4.13.2")
-            }
-        }
-        val desktopMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(compose.preview)
-            }
-        }
-        val desktopTest by getting {
-            dependsOn(commonTest)
-            dependencies {
-            }
-        }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-            dependencies {
-            }
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
+        commonTest.dependencies {
+            implementation(kotlin("test"))
         }
     }
 }

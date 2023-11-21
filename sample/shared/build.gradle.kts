@@ -6,45 +6,30 @@ plugins {
 
 kotlin {
     jvmToolchain(11)
-    jvm("desktop") {
+    jvm {
         compilations.all {
             kotlinOptions.jvmTarget = "11"
         }
     }
-    android()
+    androidTarget()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":theme:theme-prefs"))
-                implementation(project(":theme:theme-material"))
-                implementation(project(":theme:theme-material3"))
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
-                implementation(compose.material3)
-                implementation(compose.materialIconsExtended)
-                implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
-            }
+        commonMain.dependencies {
+            implementation(project(":theme:theme-prefs"))
+            implementation(project(":theme:theme-material"))
+            implementation(project(":theme:theme-material3"))
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
+            implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
         }
-        val desktopMain by getting {
-            dependencies {
-                implementation(compose.preview)
-                implementation(compose.uiTooling)
-            }
-        }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-            dependencies {
-            }
+        jvmMain.dependencies {
+            implementation(compose.preview)
+            implementation(compose.uiTooling)
         }
     }
 }

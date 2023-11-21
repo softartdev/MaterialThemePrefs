@@ -17,13 +17,10 @@ kotlin {
         withJava()
     }
     sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(project(":sample:shared"))
-                implementation(compose.desktop.currentOs)
-            }
+        jvmMain.dependencies {
+            implementation(project(":sample:shared"))
+            implementation(compose.desktop.currentOs)
         }
-        val jvmTest by getting
     }
 }
 
