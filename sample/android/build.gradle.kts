@@ -23,5 +23,5 @@ android {
 }
 dependencies {
     implementation(project(":sample:shared"))
-    implementation("androidx.activity:activity-compose:1.8.1")
+    implementation("androidx.activity:activity-compose:1.8.2")
 }

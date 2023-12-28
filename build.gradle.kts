@@ -8,9 +8,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
-        classpath("com.android.tools.build:gradle:8.1.3")
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.5.10")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21")
+        classpath("com.android.tools.build:gradle:8.2.0")
+        classpath("org.jetbrains.compose:compose-gradle-plugin:1.5.11")
         classpath("dev.icerock.moko:resources-generator:${rootProject.extra["moko_resources_version"]}")
     }
 }
