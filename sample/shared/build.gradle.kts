@@ -5,10 +5,10 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
         }
     }
     androidTarget()
@@ -38,8 +38,8 @@ android {
     defaultConfig.minSdk = rootProject.extra["android_min_sdk_version"] as Int
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
+        targetCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
     }
     namespace = "com.softartdev.shared"
 }

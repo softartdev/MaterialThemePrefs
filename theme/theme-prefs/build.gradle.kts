@@ -9,10 +9,10 @@ group = project.property("GROUP").toString()
 version = project.property("VERSION").toString()
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm("desktop") {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
         }
     }
     androidTarget {
@@ -32,7 +32,6 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
-        androidMain.get().dependsOn(commonMain.get())//TODO remove after update moko-resources > 0.23.0
     }
 }
 android {
@@ -41,24 +40,16 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDir(File(layout.buildDirectory.get().asFile, "generated/moko/androidMain/res"))
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
+        targetCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
     }
     namespace = "com.softartdev.theme.pref"
 }
 multiplatformResources {
-    multiplatformResourcesPackage = "com.softartdev.theme.pref"
+    resourcesPackage.set("com.softartdev.theme.pref")
 }
 
 tasks.withType<AbstractPublishToMaven>().configureEach {
     dependsOn(tasks.withType<Sign>())
 }
-tasks.configureEach {
-    when (name) {
-        "androidDebugSourcesJar" -> dependsOn(tasks.named("generateMRandroidMain"))
-        "androidReleaseSourcesJar" -> dependsOn(tasks.named("generateMRandroidMain"))
-        "iosArm64SourcesJar" -> dependsOn(tasks.named("generateMRiosArm64Main"))
-        "iosSimulatorArm64SourcesJar" -> dependsOn(tasks.named("generateMRiosSimulatorArm64Main"))
-        "iosX64SourcesJar" -> dependsOn(tasks.named("generateMRiosX64Main"))
-    }
-}
+

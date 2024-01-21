@@ -9,10 +9,10 @@ group = "com.softartdev"
 version = "1.0"
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
         }
         withJava()
     }

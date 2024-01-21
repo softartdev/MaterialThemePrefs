@@ -13,11 +13,11 @@ android {
         versionName = "1.0"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
+        targetCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
     }
     namespace = "com.softartdev.sample"
 }
