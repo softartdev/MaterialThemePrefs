@@ -32,7 +32,6 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
-        androidMain.get().dependsOn(commonMain.get())//TODO remove after update moko-resources > 0.23.0
     }
 }
 android {
@@ -47,7 +46,7 @@ android {
     namespace = "com.softartdev.theme.pref"
 }
 multiplatformResources {
-    multiplatformResourcesPackage = "com.softartdev.theme.pref"
+    resourcesPackage.set("com.softartdev.theme.pref")
 }
 
 tasks.withType<AbstractPublishToMaven>().configureEach {

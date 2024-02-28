@@ -34,7 +34,7 @@ kotlin {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "com.sofartdev.sample"
+    resourcesPackage.set("com.sofartdev.sample")
 }
 
 tasks.withType<KotlinNativeCompile>().configureEach {
