@@ -1,4 +1,7 @@
+@file:Suppress("OPT_IN_USAGE")
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     kotlin("multiplatform")
@@ -11,10 +14,8 @@ version = "1.0"
 kotlin {
     jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
-        }
-        withJava()
+        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
+//        withJava()
     }
     sourceSets {
         jvmMain.dependencies {

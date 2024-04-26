@@ -3,7 +3,7 @@
 out
 gen
 *.hprof
-
+/.kotlin/
 build
 **/build/
 /.gradle/

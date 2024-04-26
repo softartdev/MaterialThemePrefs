@@ -28,7 +28,7 @@ fun App() = PreferableMaterialTheme { // provides composition locals
     }
 }
 ```
-
+The [NoteDelight](https://github.com/softartdev/NoteDelight/blob/master/shared-compose-ui/src/commonMain/kotlin/com/softartdev/notedelight/ui/SettingsScreen.kt#L104) app is a real example.   
 ## Installation
 The latest release is available on [Maven Central](https://repo1.maven.org/maven2/io/github/softartdev/theme-material/).
 ### Gradle

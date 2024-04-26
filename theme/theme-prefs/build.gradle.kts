@@ -1,3 +1,7 @@
+@file:Suppress("OPT_IN_USAGE")
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
@@ -11,9 +15,7 @@ version = project.property("VERSION").toString()
 kotlin {
     jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm("desktop") {
-        compilations.all {
-            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
-        }
+        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
     }
     androidTarget {
         publishLibraryVariants("release", "debug")
@@ -25,9 +27,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
-            implementation("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
+            api(compose.runtime)
+            api("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
+            api("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

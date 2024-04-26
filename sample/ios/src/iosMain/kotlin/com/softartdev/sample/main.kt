@@ -4,9 +4,10 @@ import androidx.compose.ui.main.defaultUIKitMain
 import androidx.compose.ui.window.ComposeUIViewController
 import com.softartdev.shared.App
 import com.softartdev.theme.pref.MR
-import dev.icerock.moko.resources.desc.desc
+import dev.icerock.moko.resources.desc.Utils
 
 fun main() = defaultUIKitMain(
-    executableName = MR.strings.material_theme_prefs.desc().localized(),
+    //TODO MR.strings.material_theme_prefs.desc().localized()
+    executableName = Utils.localizedString(MR.strings.material_theme_prefs),
     rootViewController = ComposeUIViewController { App() }
 )

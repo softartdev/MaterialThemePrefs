@@ -87,7 +87,10 @@ publishing {
 }
 
 signing {
-    sign(publishing.publications)
+    val isLocalPublication = gradle.startParameter.taskNames.any { taskName ->
+        taskName.contains("publishToMavenLocal")
+    }
+    if (!isLocalPublication) sign(publishing.publications)
 }
 
 nexusStaging {
