@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.library")
     id("convention.publication")
 }

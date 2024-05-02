@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 group = "com.softartdev"
