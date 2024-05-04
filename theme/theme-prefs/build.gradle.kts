@@ -51,3 +51,6 @@ android {
 multiplatformResources {
     resourcesPackage.set("com.softartdev.theme.pref")
 }
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    dependsOn(tasks.withType<Sign>())
+}
