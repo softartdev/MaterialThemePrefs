@@ -47,9 +47,6 @@ android {
     }
     namespace = "com.softartdev.theme.material3"
 }
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOn(tasks.withType<Sign>())
-}
 tasks.withType<AndroidLintAnalysisTask>{
     dependsOn("generateResourceAccessorsForAndroidUnitTest")
 }

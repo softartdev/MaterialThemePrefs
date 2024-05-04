@@ -27,7 +27,3 @@ kotlin {
 multiplatformResources {
     resourcesPackage.set("com.sofartdev.sample")
 }
-
-tasks.withType<KotlinNativeCompile>().configureEach {
-    dependsOn(":sample:ios:generateMRcommonMain")
-}

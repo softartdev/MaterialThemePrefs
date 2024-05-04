@@ -3,7 +3,7 @@ buildscript {
     extra["android_min_sdk_version"] = 21
     extra["android_compile_sdk_version"] = 34
     extra["jdk_version"] = 17
-    extra["moko_resources_version"] = "0.24.0-beta-2"
+    extra["moko_resources_version"] = "0.24.0-beta-3"
     repositories {
         gradlePluginPortal()
         google()

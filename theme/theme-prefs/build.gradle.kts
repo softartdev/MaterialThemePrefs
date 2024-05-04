@@ -51,16 +51,3 @@ android {
 multiplatformResources {
     resourcesPackage.set("com.softartdev.theme.pref")
 }
-
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    dependsOn(tasks.withType<Sign>())
-}
-tasks.configureEach {
-    when (name) {
-        "androidDebugSourcesJar" -> dependsOn(tasks.named("generateMRandroidMain"))
-        "androidReleaseSourcesJar" -> dependsOn(tasks.named("generateMRandroidMain"))
-        "iosArm64SourcesJar" -> dependsOn(tasks.named("generateMRiosArm64Main"))
-        "iosSimulatorArm64SourcesJar" -> dependsOn(tasks.named("generateMRiosSimulatorArm64Main"))
-        "iosX64SourcesJar" -> dependsOn(tasks.named("generateMRiosX64Main"))
-    }
-}
