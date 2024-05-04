@@ -9,10 +9,8 @@ plugins {
 }
 
 val binConfig: KotlinNativeTarget.() -> Unit = {
-    binaries {
-        executable {
-            entryPoint = "com.softartdev.sample.main"
-        }
+    binaries.executable {
+        entryPoint = "com.softartdev.sample.main"
     }
 }
 kotlin {
