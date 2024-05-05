@@ -1,25 +1,23 @@
 package com.softartdev.theme.pref
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 
 class DialogHolder {
     private var dialogContent: @Composable () -> Unit = {}
-    private var showDialog: Boolean by mutableStateOf(false)
+    private val showDialogState = mutableStateOf(false)
 
     fun showDialog(content: @Composable () -> Unit) {
         dialogContent = content
-        showDialog = true
+        showDialogState.value = true
     }
 
     @Composable
     fun showDialogIfNeed() {
-        if (showDialog) dialogContent()
+        if (showDialogState.value) dialogContent()
     }
 
     fun dismissDialog() {
-        showDialog = false
+        showDialogState.value = false
     }
 }
