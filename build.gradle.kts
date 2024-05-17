@@ -13,7 +13,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.extra["kotlin_version"]}")
         classpath("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${rootProject.extra["kotlin_version"]}")
         classpath("com.android.tools.build:gradle:8.4.0")
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.6.10-rc02")
+        classpath("org.jetbrains.compose:compose-gradle-plugin:1.6.10-rc03")
         classpath("dev.icerock.moko:resources-generator:${rootProject.extra["moko_resources_version"]}")
     }
 }
