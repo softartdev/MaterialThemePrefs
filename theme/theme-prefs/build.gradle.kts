@@ -1,11 +1,6 @@
-@file:Suppress("OPT_IN_USAGE")
-
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.library")
     id("dev.icerock.mobile.multiplatform-resources")
     id("convention.publication")
@@ -16,7 +11,9 @@ version = project.property("VERSION").toString()
 kotlin {
     jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm("desktop") {
-        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
+        compilations.all {
+            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
+        }
     }
     androidTarget {
         publishLibraryVariants("release", "debug")

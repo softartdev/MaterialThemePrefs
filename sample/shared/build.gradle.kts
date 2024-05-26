@@ -1,20 +1,18 @@
-@file:Suppress("OPT_IN_USAGE")
-
 import com.android.build.gradle.internal.lint.AndroidLintAnalysisTask
 import com.android.build.gradle.internal.lint.LintModelWriterTask
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.library")
 }
 
 kotlin {
     jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm {
-        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
+        compilations.all {
+            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
+        }
     }
     androidTarget()
 //    iosX64()

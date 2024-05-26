@@ -1,6 +1,5 @@
 plugins {
     id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.application")
     kotlin("android")
 }
@@ -19,6 +18,10 @@ android {
     }
     kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
     namespace = "com.softartdev.sample"
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.14"
+    }
+    buildFeatures.compose = true
 }
 dependencies {
     implementation(project(":sample:shared"))
