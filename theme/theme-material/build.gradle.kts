@@ -1,9 +1,11 @@
 import com.android.build.gradle.internal.lint.AndroidLintAnalysisTask
 import com.android.build.gradle.internal.lint.LintModelWriterTask
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.library")
     id("convention.publication")
 }
@@ -13,9 +15,7 @@ version = project.property("VERSION").toString()
 kotlin {
     jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm("desktop") {
-        compilations.all {
-            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
-        }
+        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
     }
     androidTarget {
         publishLibraryVariants("release", "debug")

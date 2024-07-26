@@ -10,8 +10,8 @@ plugins {
 ext["signing.keyId"] = null
 ext["signing.password"] = null
 ext["signing.secretKeyRingFile"] = null
-ext["ossrhUsername"] = null
-ext["ossrhPassword"] = null
+ext["ossrhToken"] = null
+ext["ossrhTokenPassword"] = null
 ext["sonatypeStagingProfileId"] = null
 
 // Grabbing secrets from local.properties file or from environment variables, which could be used on CI
@@ -28,8 +28,8 @@ if (secretPropsFile.exists()) {
     ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
     ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
     ext["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE")
-    ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
-    ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
+    ext["ossrhToken"] = System.getenv("OSSRH_TOKEN")
+    ext["ossrhTokenPassword"] = System.getenv("OSSRH_TOKEN_PASSWORD")
     ext["sonatypeStagingProfileId"] = System.getenv("SONATYPE_STAGING_PROFILE_ID")
 }
 ext["signing.secretKeyRingFile"] = "../../${ext["signing.secretKeyRingFile"]}" // path from module
@@ -47,8 +47,8 @@ publishing {
             name = "sonatype"
             setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
             credentials {
-                username = getExtraString("ossrhUsername")
-                password = getExtraString("ossrhPassword")
+                username = getExtraString("ossrhToken")
+                password = getExtraString("ossrhTokenPassword")
             }
         }
     }
@@ -97,6 +97,6 @@ nexusStaging {
     serverUrl = "https://s01.oss.sonatype.org/service/local/"
     packageGroup = project.property("GROUP").toString()
     stagingProfileId = getExtraString("sonatypeStagingProfileId")
-    username = getExtraString("ossrhUsername")
-    password = getExtraString("ossrhPassword")
+    username = getExtraString("ossrhToken")
+    password = getExtraString("ossrhTokenPassword")
 }

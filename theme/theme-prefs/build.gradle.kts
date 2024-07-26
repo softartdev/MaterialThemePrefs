@@ -1,8 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.library")
-    id("dev.icerock.mobile.multiplatform-resources")
     id("convention.publication")
 }
 group = project.property("GROUP").toString()
@@ -11,9 +13,7 @@ version = project.property("VERSION").toString()
 kotlin {
     jvmToolchain(rootProject.extra["jdk_version"] as Int)
     jvm("desktop") {
-        compilations.all {
-            kotlinOptions.jvmTarget = "${rootProject.extra["jdk_version"] as Int}"
-        }
+        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
     }
     androidTarget {
         publishLibraryVariants("release", "debug")
@@ -26,11 +26,14 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(compose.runtime)
-            api("dev.icerock.moko:resources:${rootProject.extra["moko_resources_version"]}")
-            api("dev.icerock.moko:resources-compose:${rootProject.extra["moko_resources_version"]}")
+            api(compose.components.resources)
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
+        }
+        androidMain.dependencies {
+            api(compose.ui)
         }
     }
 }
@@ -45,8 +48,8 @@ android {
     }
     namespace = "com.softartdev.theme.pref"
 }
-multiplatformResources {
-    resourcesPackage.set("com.softartdev.theme.pref")
+compose.resources {
+    publicResClass = true
 }
 tasks.withType<AbstractPublishToMaven>().configureEach {
     dependsOn(tasks.withType<Sign>())

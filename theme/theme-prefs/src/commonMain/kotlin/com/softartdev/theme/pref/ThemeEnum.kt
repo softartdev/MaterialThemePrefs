@@ -1,19 +1,13 @@
 package com.softartdev.theme.pref
 
-import androidx.compose.runtime.Composable
-import dev.icerock.moko.resources.compose.stringResource
+import io.github.softartdev.theme_prefs.generated.resources.Res
+import io.github.softartdev.theme_prefs.generated.resources.dark
+import io.github.softartdev.theme_prefs.generated.resources.light
+import io.github.softartdev.theme_prefs.generated.resources.system_default
+import org.jetbrains.compose.resources.StringResource
 
-enum class ThemeEnum {
-    Light,
-    Dark,
-    SystemDefault;
-
-    @Composable
-    fun toLocalizedString(): String = stringResource(
-        resource = when (this) {
-            Light -> MR.strings.light
-            Dark -> MR.strings.dark
-            SystemDefault -> MR.strings.system_default
-        }
-    )
+enum class ThemeEnum(val stringRes: StringResource) {
+    Light(Res.string.light),
+    Dark(Res.string.dark),
+    SystemDefault(Res.string.system_default)
 }

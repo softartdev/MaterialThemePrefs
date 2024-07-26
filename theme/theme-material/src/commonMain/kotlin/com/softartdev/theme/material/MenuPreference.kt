@@ -1,10 +1,13 @@
 @file:OptIn(ExperimentalMaterialApi::class)
-@file:Suppress("EXPERIMENTAL_IS_NOT_ENABLED")
 
 package com.softartdev.theme.material
 
 import androidx.compose.foundation.clickable
-import androidx.compose.material.*
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
+import androidx.compose.material.ListItem
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Brightness4
 import androidx.compose.material.icons.filled.SettingsBrightness
@@ -12,21 +15,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.softartdev.theme.pref.LocalThemePrefs
-import com.softartdev.theme.pref.MR
 import com.softartdev.theme.pref.ThemePrefs
-import dev.icerock.moko.resources.compose.stringResource
+import io.github.softartdev.theme_prefs.generated.resources.Res
+import io.github.softartdev.theme_prefs.generated.resources.choose_theme
+import io.github.softartdev.theme_prefs.generated.resources.theme
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ThemePreferencesCategory() = PreferenceCategory(
-    title = stringResource(MR.strings.theme),
+    title = stringResource(Res.string.theme),
     vector = Icons.Filled.Brightness4
 )
 
 @Composable
 fun ThemePreferenceItem(themePrefs: ThemePrefs = LocalThemePrefs.current) = PreferenceItem(
-    title = stringResource(MR.strings.choose_theme),
+    title = stringResource(Res.string.choose_theme),
     vector = Icons.Filled.SettingsBrightness,
-    secondaryText = { Text(text = themePrefs.darkThemeState.value.toLocalizedString()) },
+    secondaryText = { Text(text = stringResource(themePrefs.darkThemeState.value.stringRes)) },
     onClick = themePrefs::showDialog
 )
 

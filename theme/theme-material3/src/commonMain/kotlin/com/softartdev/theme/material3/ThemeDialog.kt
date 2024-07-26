@@ -8,9 +8,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.softartdev.theme.pref.DialogHolder
-import com.softartdev.theme.pref.MR
 import com.softartdev.theme.pref.ThemeEnum
-import dev.icerock.moko.resources.compose.stringResource
+import io.github.softartdev.theme_prefs.generated.resources.Res
+import io.github.softartdev.theme_prefs.generated.resources.cancel
+import io.github.softartdev.theme_prefs.generated.resources.choose_theme
+import io.github.softartdev.theme_prefs.generated.resources.ok
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ThemeDialog(
@@ -21,23 +24,26 @@ fun ThemeDialog(
     val previousState = remember { darkThemeState.value }
     AlertDialog(
         onDismissRequest = dismissDialog,
-        title = { Text(stringResource(MR.strings.choose_theme)) },
+        title = { Text(stringResource(Res.string.choose_theme)) },
         text = { RadioDialogContent(darkThemeState) },
         confirmButton = {
             Button(onClick = {
                 writePref(darkThemeState.value)
                 dismissDialog()
-            }) { Text(stringResource(MR.strings.ok)) }
+            }) { Text(stringResource(Res.string.ok)) }
         },
         dismissButton = {
             Button(onClick = {
                 darkThemeState.value = previousState
                 dismissDialog()
-            }) { Text(stringResource(MR.strings.cancel)) }
+            }) { Text(stringResource(Res.string.cancel)) }
         },
     )
 }
 
-fun DialogHolder.showThemeChange(darkThemeState: MutableState<ThemeEnum>, writePref: (ThemeEnum) -> Unit) = showDialog {
+fun DialogHolder.showThemeChange(
+    darkThemeState: MutableState<ThemeEnum>,
+    writePref: (ThemeEnum) -> Unit
+) = showDialog {
     ThemeDialog(darkThemeState, writePref, ::dismissDialog)
 }
