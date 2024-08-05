@@ -17,7 +17,6 @@ import org.jetbrains.compose.resources.stringResource
 
 object AppState {
     val showMaterial3: MutableState<Boolean> = mutableStateOf(false)
-    val showNote: MutableState<Boolean> = mutableStateOf(false)
     val textState: MutableState<String> = mutableStateOf(readMe)
     val scrollState: ScrollState = ScrollState(initial = 0)
 

@@ -7,14 +7,16 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
-import com.softartdev.theme.pref.*
+import com.softartdev.theme.pref.PreferenceHelper
+import com.softartdev.theme.pref.ThemeEnum
+import com.softartdev.theme.pref.ThemePrefs
+import com.softartdev.theme.pref.rememberPreferenceHelper
 
 class MaterialThemePrefs(
     preferenceHelper: PreferenceHelper,
-    dialogHolder: DialogHolder = DialogHolder(),
     val darkColorPalette: Colors = darkColors(),
     val lightColorPalette: Colors = lightColors()
-) : ThemePrefs(preferenceHelper, dialogHolder) {
+) : ThemePrefs(preferenceHelper) {
 
     val colors: Colors
         @Composable
@@ -34,11 +36,6 @@ val ThemePrefs.colors: Colors
         return materialThemePrefs.colors
     }
 
-fun ThemePrefs.showDialog() = dialogHolder.showThemeChange(
-    darkThemeState = darkThemeState,
-    writePref = preferenceHelper::themeEnum::set
-)
-
 @Composable
 fun rememberThemePrefs(): MaterialThemePrefs {
     val preferenceHelper = rememberPreferenceHelper()
@@ -48,17 +45,15 @@ fun rememberThemePrefs(): MaterialThemePrefs {
 @Composable
 fun rememberThemePrefs(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),
-    dialogHolder: DialogHolder = DialogHolder(),
     darkColorPalette: Colors = darkColors(),
     lightColorPalette: Colors = lightColors()
 ) = remember(
-    key1 = dialogHolder,
+    key1 = preferHelper,
     key2 = darkColorPalette,
     key3 = lightColorPalette
 ) {
     MaterialThemePrefs(
         preferenceHelper = preferHelper,
-        dialogHolder = dialogHolder,
         darkColorPalette = darkColorPalette,
         lightColorPalette = lightColorPalette
     )

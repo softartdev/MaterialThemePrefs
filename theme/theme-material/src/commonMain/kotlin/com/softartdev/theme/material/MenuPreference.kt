@@ -28,11 +28,14 @@ fun ThemePreferencesCategory() = PreferenceCategory(
 )
 
 @Composable
-fun ThemePreferenceItem(themePrefs: ThemePrefs = LocalThemePrefs.current) = PreferenceItem(
+fun ThemePreferenceItem(
+    themePrefs: ThemePrefs = LocalThemePrefs.current,
+    onClick: () -> Unit = {}
+) = PreferenceItem(
     title = stringResource(Res.string.choose_theme),
     vector = Icons.Filled.SettingsBrightness,
     secondaryText = { Text(text = stringResource(themePrefs.darkThemeState.value.stringRes)) },
-    onClick = themePrefs::showDialog
+    onClick = onClick
 )
 
 @Composable

@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.softartdev.theme.pref.DialogHolder
 import com.softartdev.theme.pref.ThemeEnum
 import io.github.softartdev.theme_prefs.generated.resources.Res
 import io.github.softartdev.theme_prefs.generated.resources.cancel
@@ -39,8 +38,4 @@ fun ThemeDialog(
             }) { Text(stringResource(Res.string.cancel)) }
         },
     )
-}
-
-fun DialogHolder.showThemeChange(darkThemeState: MutableState<ThemeEnum>, writePref: (ThemeEnum) -> Unit) = showDialog {
-    ThemeDialog(darkThemeState, writePref, ::dismissDialog)
 }

@@ -1,6 +1,5 @@
 package com.softartdev.shared.material
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Switch
@@ -14,7 +13,6 @@ import com.softartdev.theme.material.PreferenceItem
 import com.softartdev.theme.material.SettingsScaffold
 import com.softartdev.theme.material.ThemePreferenceItem
 import com.softartdev.theme.material.ThemePreferencesCategory
-import com.softartdev.theme.pref.PreferableMaterialTheme.themePrefs
 import io.github.softartdev.theme_prefs.generated.resources.Res
 import io.github.softartdev.theme_prefs.generated.resources.material_version
 import org.jetbrains.compose.resources.stringResource
@@ -25,15 +23,13 @@ import kotlin.native.HiddenFromObjC
 @HiddenFromObjC
 @Composable
 fun SettingsBody(
-    onBackClick: () -> Unit = { AppState.showNote.value = !AppState.showNote.value },
-) = SettingsScaffold(onBackClick, barActions()) { // includes TopAppBar
-    Box(modifier = Modifier.padding(it)) {
-        Column {
-            ThemePreferencesCategory() // subtitle
-            ThemePreferenceItem() // menu item
-            MaterialSwitchPreferenceItem()
-        }
-        themePrefs.showDialogIfNeed() // shows when menu item clicked
+    onBackClick: () -> Unit = {},
+    onThemeClick: () -> Unit = {},
+) = SettingsScaffold(onBackClick, barActions()) { paddingValues -> // includes TopAppBar
+    Column(modifier = Modifier.padding(paddingValues)) {
+        ThemePreferencesCategory() // subtitle
+        ThemePreferenceItem(onClick = onThemeClick) // menu item
+        MaterialSwitchPreferenceItem()
     }
 }
 
@@ -43,5 +39,10 @@ fun MaterialSwitchPreferenceItem() = PreferenceItem(
     vector = Icons.Filled.Style,
     secondaryText = { Text(AppState.secondaryText) },
     onClick = AppState.switchMaterialCallback,
-    trailing = { Switch(checked = AppState.showMaterial3.value, onCheckedChange = AppState.changeMaterialCallback) }
+    trailing = {
+        Switch(
+            checked = AppState.showMaterial3.value,
+            onCheckedChange = AppState.changeMaterialCallback
+        )
+    }
 )

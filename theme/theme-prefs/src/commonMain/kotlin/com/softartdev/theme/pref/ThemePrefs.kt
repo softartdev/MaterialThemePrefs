@@ -8,12 +8,8 @@ val LocalThemePrefs = staticCompositionLocalOf<ThemePrefs> {
 
 abstract class ThemePrefs(
     val preferenceHelper: PreferenceHelper,
-    val dialogHolder: DialogHolder = DialogHolder(),
 ) {
     val darkThemeState: MutableState<ThemeEnum> = mutableStateOf(preferenceHelper.themeEnum)
-
-    @Composable
-    fun showDialogIfNeed() = dialogHolder.showDialogIfNeed()
 }
 
 object PreferableMaterialTheme {

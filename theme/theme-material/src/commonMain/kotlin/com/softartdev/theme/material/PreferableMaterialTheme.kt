@@ -11,12 +11,11 @@ import com.softartdev.theme.pref.*
 @Composable
 fun PreferableMaterialTheme(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),
-    dialogHolder: DialogHolder = DialogHolder(),
     darkColorPalette: Colors = darkColors(),
     lightColorPalette: Colors = lightColors(),
     content: @Composable PreferableMaterialTheme.() -> Unit
 ) {
-    val themePrefs = rememberThemePrefs(preferHelper, dialogHolder, darkColorPalette, lightColorPalette)
+    val themePrefs = rememberThemePrefs(preferHelper, darkColorPalette, lightColorPalette)
     CompositionLocalProvider(
         LocalThemePrefs provides themePrefs,
     ) {

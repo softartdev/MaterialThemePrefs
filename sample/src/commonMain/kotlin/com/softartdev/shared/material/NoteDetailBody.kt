@@ -1,9 +1,18 @@
 package com.softartdev.shared.material
 
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.SettingsBrightness
@@ -15,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.softartdev.shared.AppState
-import com.softartdev.theme.pref.LocalThemePrefs
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 
@@ -24,7 +32,7 @@ import kotlin.native.HiddenFromObjC
 @Composable
 fun NoteDetailBody(
     textState: MutableState<String> = remember(AppState::textState),
-    onBackClick: () -> Unit = { AppState.showNote.value = false },
+    onBackClick: () -> Unit = {},
     showLoading: Boolean = true,
     scrollState: ScrollState = remember(AppState::scrollState),
 ) = Scaffold(
@@ -42,17 +50,18 @@ fun NoteDetailBody(
             actions = barActions()
         )
     }) {
-    Box {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            if (showLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-            TextField(
-                modifier = Modifier.weight(1F).fillMaxWidth().padding(8.dp).verticalScroll(state = scrollState),
-                label = { Text("Type text") },
-                value = textState.value,
-                onValueChange = { textState.value = it },
-            )
-        }
-        LocalThemePrefs.current.showDialogIfNeed()
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        if (showLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        TextField(
+            modifier = Modifier
+                .weight(1F)
+                .fillMaxWidth()
+                .padding(8.dp)
+                .verticalScroll(state = scrollState),
+            label = { Text("Type text") },
+            value = textState.value,
+            onValueChange = { textState.value = it },
+        )
     }
 }
 

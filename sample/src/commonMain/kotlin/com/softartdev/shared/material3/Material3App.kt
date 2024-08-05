@@ -1,20 +1,46 @@
 package com.softartdev.shared.material3
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import com.softartdev.shared.AppState
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
+import androidx.navigation.compose.rememberNavController
+import com.softartdev.shared.AppNavGraph
 import com.softartdev.theme.material3.PreferableMaterialTheme
+import com.softartdev.theme.material3.ThemeDialog
+import com.softartdev.theme.pref.PreferenceHelper
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 
 @OptIn(ExperimentalObjCRefinement::class)
 @HiddenFromObjC
 @Composable
-fun Material3App() = PreferableMaterialTheme { // provides composition locals
-    val showNote: Boolean by remember(AppState::showNote) // provides composition locals
-    when(showNote) {
-        true -> NoteDetailBody()
-        else -> SettingsBody()
+fun Material3App(
+    navController: NavHostController = rememberNavController()
+) = PreferableMaterialTheme { // provides composition locals
+    NavHost(
+        navController = navController,
+        startDestination = AppNavGraph.Settings.name,
+    ) {
+        composable(route = AppNavGraph.Settings.name) {
+            SettingsBody(
+                onBackClick = { navController.navigate(route = AppNavGraph.NoteDetail.name) },
+                onThemeClick = { navController.navigate(route = AppNavGraph.ThemeDialog.name) }
+            )
+        }
+        composable(route = AppNavGraph.NoteDetail.name) {
+            NoteDetailBody(
+                onBackClick = { navController.navigate(route = AppNavGraph.Settings.name) }
+            )
+        }
+        dialog(route = AppNavGraph.ThemeDialog.name) {
+            val preferenceHelper: PreferenceHelper = themePrefs.preferenceHelper
+            ThemeDialog(
+                darkThemeState = themePrefs.darkThemeState,
+                writePref = preferenceHelper::themeEnum::set,
+                dismissDialog = navController::navigateUp,
+            )
+        }
     }
 }

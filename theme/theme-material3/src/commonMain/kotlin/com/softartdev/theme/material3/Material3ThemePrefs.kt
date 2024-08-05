@@ -11,10 +11,9 @@ import com.softartdev.theme.pref.*
 
 class Material3ThemePrefs(
     preferenceHelper: PreferenceHelper,
-    dialogHolder: DialogHolder = DialogHolder(),
     val darkColorScheme: ColorScheme = darkColorScheme(),
     val lightColorScheme: ColorScheme = lightColorScheme()
-) : ThemePrefs(preferenceHelper, dialogHolder) {
+) : ThemePrefs(preferenceHelper) {
 
     val colorScheme: ColorScheme
         @Composable
@@ -34,11 +33,6 @@ val ThemePrefs.colorScheme: ColorScheme
         return material3ThemePrefs.colorScheme
     }
 
-fun ThemePrefs.showDialog() = dialogHolder.showThemeChange(
-    darkThemeState = darkThemeState,
-    writePref = preferenceHelper::themeEnum::set
-)
-
 @Composable
 fun rememberThemePrefs(): Material3ThemePrefs {
     val preferenceHelper = rememberPreferenceHelper()
@@ -48,17 +42,15 @@ fun rememberThemePrefs(): Material3ThemePrefs {
 @Composable
 fun rememberThemePrefs(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),
-    dialogHolder: DialogHolder = DialogHolder(),
     darkColorScheme: ColorScheme = darkColorScheme(),
     lightColorScheme: ColorScheme = lightColorScheme()
 ) = remember(
-    key1 = dialogHolder,
+    key1 = preferHelper,
     key2 = darkColorScheme,
     key3 = lightColorScheme
 ) {
     Material3ThemePrefs(
         preferenceHelper = preferHelper,
-        dialogHolder = dialogHolder,
         darkColorScheme = darkColorScheme,
         lightColorScheme = lightColorScheme
     )
