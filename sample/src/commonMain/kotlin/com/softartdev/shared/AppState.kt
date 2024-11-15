@@ -51,6 +51,6 @@ object AppState {
             }
         }
 
-    val changeMaterialCallback: (Boolean) -> Unit = { showMaterial3.value = it }
+    val changeMaterialCallback: (Boolean) -> Unit = showMaterial3::value::set
     val switchMaterialCallback: () -> Unit = { showMaterial3.value = !showMaterial3.value }
 }
