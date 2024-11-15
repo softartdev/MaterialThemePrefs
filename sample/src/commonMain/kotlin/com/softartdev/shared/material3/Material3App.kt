@@ -21,7 +21,8 @@ fun Material3App(
 ) = PreferableMaterialTheme { // provides composition locals
     NavHost(
         navController = navController,
-        startDestination = AppNavGraph.Settings.name,
+        startDestination = navController.currentDestination?.route ?: AppNavGraph.Settings.name,
+        route = "Material3App"
     ) {
         composable(route = AppNavGraph.Settings.name) {
             SettingsBody(
