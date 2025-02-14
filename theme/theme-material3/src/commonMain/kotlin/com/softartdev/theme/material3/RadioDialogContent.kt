@@ -20,29 +20,31 @@ import com.softartdev.theme.pref.ThemeEnum
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun RadioDialogContent(darkThemeState: MutableState<ThemeEnum>) = Column(Modifier.selectableGroup()) {
-    ThemeEnum.entries.forEach { themeEnum: ThemeEnum ->
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-                .selectable(
+public fun RadioDialogContent(darkThemeState: MutableState<ThemeEnum>) {
+    Column(modifier = Modifier.selectableGroup()) {
+        ThemeEnum.entries.forEach { themeEnum: ThemeEnum ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp)
+                    .selectable(
+                        selected = themeEnum == darkThemeState.value,
+                        onClick = { darkThemeState.value = themeEnum },
+                        role = Role.RadioButton
+                    )
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
                     selected = themeEnum == darkThemeState.value,
-                    onClick = { darkThemeState.value = themeEnum },
-                    role = Role.RadioButton
+                    onClick = null // null recommended for accessibility with screenreaders
                 )
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            RadioButton(
-                selected = themeEnum == darkThemeState.value,
-                onClick = null // null recommended for accessibility with screenreaders
-            )
-            Text(
-                text = stringResource(themeEnum.stringRes),
-                style = MaterialTheme.typography.bodyLarge.merge(),
-                modifier = Modifier.padding(start = 16.dp)
-            )
+                Text(
+                    text = stringResource(themeEnum.stringRes),
+                    style = MaterialTheme.typography.bodyLarge.merge(),
+                    modifier = Modifier.padding(start = 16.dp)
+                )
+            }
         }
     }
 }

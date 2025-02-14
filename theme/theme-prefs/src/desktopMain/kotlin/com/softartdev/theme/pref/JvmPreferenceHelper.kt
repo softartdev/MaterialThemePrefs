@@ -3,7 +3,7 @@ package com.softartdev.theme.pref
 import androidx.compose.runtime.Composable
 import java.util.prefs.Preferences
 
-class JvmPreferenceHelper : PreferenceHelper {
+internal class JvmPreferenceHelper : PreferenceHelper {
 
      private var preferences: Preferences = Preferences.userNodeForPackage(ThemeEnum::class.java)
 
@@ -15,4 +15,4 @@ class JvmPreferenceHelper : PreferenceHelper {
 }
 
 @Composable
-actual fun obtainPreferenceHelper(): PreferenceHelper = JvmPreferenceHelper()
+internal actual fun obtainPreferenceHelper(): PreferenceHelper = JvmPreferenceHelper()

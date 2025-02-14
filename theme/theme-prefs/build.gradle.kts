@@ -36,6 +36,7 @@ kotlin {
             api(compose.ui)
         }
     }
+    explicitApi()
 }
 android {
     compileSdk = rootProject.extra["android_compile_sdk_version"] as Int

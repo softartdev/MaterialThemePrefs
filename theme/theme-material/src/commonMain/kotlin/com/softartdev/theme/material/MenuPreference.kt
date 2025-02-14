@@ -22,16 +22,16 @@ import io.github.softartdev.theme_prefs.generated.resources.theme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun ThemePreferencesCategory() = PreferenceCategory(
+public fun ThemePreferencesCategory(): Unit = PreferenceCategory(
     title = stringResource(Res.string.theme),
     vector = Icons.Filled.Brightness4
 )
 
 @Composable
-fun ThemePreferenceItem(
+public fun ThemePreferenceItem(
     themePrefs: ThemePrefs = LocalThemePrefs.current,
     onClick: () -> Unit = {}
-) = PreferenceItem(
+): Unit = PreferenceItem(
     title = stringResource(Res.string.choose_theme),
     vector = Icons.Filled.SettingsBrightness,
     secondaryText = { Text(text = stringResource(themePrefs.darkThemeState.value.stringRes)) },
@@ -39,7 +39,7 @@ fun ThemePreferenceItem(
 )
 
 @Composable
-fun PreferenceCategory(title: String, vector: ImageVector) = ListItem(
+public fun PreferenceCategory(title: String, vector: ImageVector): Unit = ListItem(
     icon = { Icon(imageVector = vector, contentDescription = title) },
     text = {
         Text(text = title,
@@ -49,13 +49,13 @@ fun PreferenceCategory(title: String, vector: ImageVector) = ListItem(
 )
 
 @Composable
-fun PreferenceItem(
+public fun PreferenceItem(
     title: String,
     vector: ImageVector,
     onClick: () -> Unit = {},
     secondaryText: @Composable (() -> Unit)? = null,
     trailing: @Composable (() -> Unit)? = null,
-) = ListItem(
+): Unit = ListItem(
     modifier = Modifier.clickable(onClick = onClick),
     icon = { Icon(imageVector = vector, contentDescription = title) },
     text = { Text(text = title) },

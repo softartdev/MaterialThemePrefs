@@ -15,7 +15,7 @@ import io.github.softartdev.theme_prefs.generated.resources.ok
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun ThemeDialog(
+public fun ThemeDialog(
     darkThemeState: MutableState<ThemeEnum> = mutableStateOf(ThemeEnum.SystemDefault),
     writePref: (ThemeEnum) -> Unit = {},
     dismissDialog: () -> Unit = {}

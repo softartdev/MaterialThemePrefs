@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-class AndroidPreferenceHelper(context: Context) : PreferenceHelper {
+internal class AndroidPreferenceHelper(context: Context) : PreferenceHelper {
 
     private val preferences: SharedPreferences =
         context.getSharedPreferences(context.packageName + "_ThemePref", Context.MODE_PRIVATE)
@@ -18,7 +18,7 @@ class AndroidPreferenceHelper(context: Context) : PreferenceHelper {
 }
 
 @Composable
-actual fun obtainPreferenceHelper(): PreferenceHelper {
+internal actual fun obtainPreferenceHelper(): PreferenceHelper {
     val context = LocalContext.current.applicationContext
     return AndroidPreferenceHelper(context)
 }

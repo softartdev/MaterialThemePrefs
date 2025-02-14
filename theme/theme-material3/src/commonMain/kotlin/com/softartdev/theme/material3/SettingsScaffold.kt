@@ -19,22 +19,22 @@ import io.github.softartdev.theme_prefs.generated.resources.settings
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun SettingsScaffold(
+public fun SettingsScaffold(
     onBackClick: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
-) = Scaffold(
+): Unit = Scaffold(
     topBar = { SettingsTopAppBar(onBackClick, actions) },
     content = content
 )
 
 @Composable
-fun SettingsTopAppBar(
+public fun SettingsTopAppBar(
     onBackClick: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
     localizedText: String = stringResource(Res.string.settings),
     backVector: ImageVector = Icons.AutoMirrored.Filled.ArrowBack,
-) = TopAppBar(
+): Unit = TopAppBar(
     title = { Text(localizedText) },
     navigationIcon = {
         IconButton(onClick = onBackClick) {

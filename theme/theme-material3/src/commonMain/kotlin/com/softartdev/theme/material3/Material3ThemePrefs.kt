@@ -9,13 +9,13 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import com.softartdev.theme.pref.*
 
-class Material3ThemePrefs(
+public class Material3ThemePrefs(
     preferenceHelper: PreferenceHelper,
-    val darkColorScheme: ColorScheme = darkColorScheme(),
-    val lightColorScheme: ColorScheme = lightColorScheme()
+    private val darkColorScheme: ColorScheme = darkColorScheme(),
+    private val lightColorScheme: ColorScheme = lightColorScheme()
 ) : ThemePrefs(preferenceHelper) {
 
-    val colorScheme: ColorScheme
+    public val colorScheme: ColorScheme
         @Composable
         @ReadOnlyComposable
         get() = when (darkThemeState.value) {
@@ -25,7 +25,7 @@ class Material3ThemePrefs(
         }
 }
 
-val ThemePrefs.colorScheme: ColorScheme
+public val ThemePrefs.colorScheme: ColorScheme
     @Composable
     @ReadOnlyComposable
     get() {
@@ -34,17 +34,17 @@ val ThemePrefs.colorScheme: ColorScheme
     }
 
 @Composable
-fun rememberThemePrefs(): Material3ThemePrefs {
+public fun rememberThemePrefs(): Material3ThemePrefs {
     val preferenceHelper = rememberPreferenceHelper()
     return remember { Material3ThemePrefs(preferenceHelper) }
 }
 
 @Composable
-fun rememberThemePrefs(
+public fun rememberThemePrefs(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),
     darkColorScheme: ColorScheme = darkColorScheme(),
     lightColorScheme: ColorScheme = lightColorScheme()
-) = remember(
+): Material3ThemePrefs = remember(
     key1 = preferHelper,
     key2 = darkColorScheme,
     key3 = lightColorScheme

@@ -9,7 +9,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import com.softartdev.theme.pref.*
 
 @Composable
-fun PreferableMaterialTheme(
+public fun PreferableMaterialTheme(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),
     darkColorScheme: ColorScheme = darkColorScheme(),
     lightColorScheme: ColorScheme = lightColorScheme(),

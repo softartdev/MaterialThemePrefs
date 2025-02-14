@@ -12,13 +12,13 @@ import com.softartdev.theme.pref.ThemeEnum
 import com.softartdev.theme.pref.ThemePrefs
 import com.softartdev.theme.pref.rememberPreferenceHelper
 
-class MaterialThemePrefs(
+public class MaterialThemePrefs(
     preferenceHelper: PreferenceHelper,
-    val darkColorPalette: Colors = darkColors(),
-    val lightColorPalette: Colors = lightColors()
+    private val darkColorPalette: Colors = darkColors(),
+    private val lightColorPalette: Colors = lightColors()
 ) : ThemePrefs(preferenceHelper) {
 
-    val colors: Colors
+    public val colors: Colors
         @Composable
         @ReadOnlyComposable
         get() = when (darkThemeState.value) {
@@ -28,7 +28,7 @@ class MaterialThemePrefs(
         }
 }
 
-val ThemePrefs.colors: Colors
+public val ThemePrefs.colors: Colors
     @Composable
     @ReadOnlyComposable
     get() {
@@ -37,17 +37,17 @@ val ThemePrefs.colors: Colors
     }
 
 @Composable
-fun rememberThemePrefs(): MaterialThemePrefs {
+public fun rememberThemePrefs(): MaterialThemePrefs {
     val preferenceHelper = rememberPreferenceHelper()
     return remember { MaterialThemePrefs(preferenceHelper) }
 }
 
 @Composable
-fun rememberThemePrefs(
+public fun rememberThemePrefs(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),
     darkColorPalette: Colors = darkColors(),
     lightColorPalette: Colors = lightColors()
-) = remember(
+): MaterialThemePrefs = remember(
     key1 = preferHelper,
     key2 = darkColorPalette,
     key3 = lightColorPalette

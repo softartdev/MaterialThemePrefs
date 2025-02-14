@@ -2,19 +2,19 @@ package com.softartdev.theme.pref
 
 import androidx.compose.runtime.*
 
-val LocalThemePrefs = staticCompositionLocalOf<ThemePrefs> {
+public val LocalThemePrefs: ProvidableCompositionLocal<ThemePrefs> = staticCompositionLocalOf {
     error("CompositionLocal LocalThemePrefs not present")
 }
 
-abstract class ThemePrefs(
-    val preferenceHelper: PreferenceHelper,
+public abstract class ThemePrefs(
+    public val preferenceHelper: PreferenceHelper,
 ) {
-    val darkThemeState: MutableState<ThemeEnum> = mutableStateOf(preferenceHelper.themeEnum)
+    public val darkThemeState: MutableState<ThemeEnum> = mutableStateOf(preferenceHelper.themeEnum)
 }
 
-object PreferableMaterialTheme {
+public object PreferableMaterialTheme {
 
-    val themePrefs: ThemePrefs
+    public val themePrefs: ThemePrefs
         @Composable
         @ReadOnlyComposable
         get() = LocalThemePrefs.current

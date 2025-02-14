@@ -3,7 +3,7 @@ package com.softartdev.theme.pref
 import androidx.compose.runtime.Composable
 import platform.Foundation.NSUserDefaults
 
-class IosPreferenceHelper : PreferenceHelper {
+internal class IosPreferenceHelper : PreferenceHelper {
 
     private var preferences: NSUserDefaults = NSUserDefaults.standardUserDefaults
 
@@ -15,4 +15,4 @@ class IosPreferenceHelper : PreferenceHelper {
 }
 
 @Composable
-actual fun obtainPreferenceHelper(): PreferenceHelper = IosPreferenceHelper()
+internal actual fun obtainPreferenceHelper(): PreferenceHelper = IosPreferenceHelper()
