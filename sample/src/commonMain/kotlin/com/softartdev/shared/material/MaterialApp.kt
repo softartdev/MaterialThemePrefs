@@ -1,6 +1,7 @@
 package com.softartdev.shared.material
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,9 +18,11 @@ import kotlin.native.HiddenFromObjC
 @HiddenFromObjC
 @Composable
 fun MaterialApp(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) = PreferableMaterialTheme { // provides composition locals
     NavHost(
+        modifier = modifier,
         navController = navController,
         startDestination = navController.currentDestination?.route ?: AppNavGraph.Settings.name,
         route = "MaterialApp"

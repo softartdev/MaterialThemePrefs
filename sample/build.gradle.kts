@@ -28,7 +28,7 @@ kotlin {
         
         androidMain.dependencies {
             implementation(compose.preview)
-            implementation("androidx.activity:activity-compose:1.10.0")
+            implementation("androidx.activity:activity-compose:1.10.1")
         }
         commonMain.dependencies {
             api(project(":theme:theme-material"))
