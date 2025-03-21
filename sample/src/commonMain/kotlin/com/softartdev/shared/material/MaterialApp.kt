@@ -1,5 +1,6 @@
 package com.softartdev.shared.material
 
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -22,7 +23,7 @@ fun MaterialApp(
     navController: NavHostController = rememberNavController()
 ) = PreferableMaterialTheme { // provides composition locals
     NavHost(
-        modifier = modifier,
+        modifier = modifier.safeDrawingPadding(),
         navController = navController,
         startDestination = navController.currentDestination?.route ?: AppNavGraph.Settings.name,
         route = "MaterialApp"

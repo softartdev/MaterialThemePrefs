@@ -1,5 +1,5 @@
 buildscript {
-    extra["kotlin_version"] = "2.1.10"
+    extra["kotlin_version"] = "2.1.20"
     extra["android_min_sdk_version"] = 21
     extra["android_compile_sdk_version"] = 35
     extra["jdk_version"] = 17
