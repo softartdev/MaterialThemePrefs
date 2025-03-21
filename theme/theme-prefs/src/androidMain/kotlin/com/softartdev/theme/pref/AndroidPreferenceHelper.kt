@@ -11,7 +11,7 @@ internal class AndroidPreferenceHelper(context: Context) : PreferenceHelper {
         context.getSharedPreferences(context.packageName + "_ThemePref", Context.MODE_PRIVATE)
 
     override var themeEnum: ThemeEnum
-        get() = preferences.getInt(THEME_KEY, ThemeEnum.SystemDefault.ordinal).let(ThemeEnum.values()::get)
+        get() = preferences.getInt(THEME_KEY, ThemeEnum.SystemDefault.ordinal).let(ThemeEnum.entries::get)
         set(value) = preferences.edit().putInt(THEME_KEY, value.ordinal).apply()
 
     override fun clear() = preferences.edit().clear().apply()

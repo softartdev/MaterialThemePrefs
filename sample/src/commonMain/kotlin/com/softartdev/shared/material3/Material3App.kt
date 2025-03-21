@@ -8,6 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import com.softartdev.shared.AppNavGraph
+import com.softartdev.shared.EnableEdgeToEdge
+import com.softartdev.shared.inDark
 import com.softartdev.theme.material3.PreferableMaterialTheme
 import com.softartdev.theme.material3.ThemeDialog
 import com.softartdev.theme.pref.PreferenceHelper
@@ -21,6 +23,7 @@ fun Material3App(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) = PreferableMaterialTheme { // provides composition locals
+    EnableEdgeToEdge(material3 = true, inDark = themePrefs.inDark)
     NavHost(
         modifier = modifier,
         navController = navController,
