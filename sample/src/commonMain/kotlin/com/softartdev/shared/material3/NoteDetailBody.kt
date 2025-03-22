@@ -23,6 +23,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -36,8 +37,10 @@ import kotlin.native.HiddenFromObjC
 fun NoteDetailBody(
     textState: MutableState<String> = remember(AppState::textState),
     onBackClick: () -> Unit = {},
-    showLoading: Boolean = true,
-    scrollState: ScrollState = remember(AppState::scrollState),
+    scrollState: ScrollState = rememberSaveable(
+        saver = ScrollState.Saver,
+        init = AppState::scrollState
+    ),
 ) = Scaffold(
     topBar = {
         TopAppBar(
@@ -57,7 +60,11 @@ fun NoteDetailBody(
         modifier = Modifier.padding(paddingValues),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if (showLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        LinearProgressIndicator(
+            modifier = Modifier.fillMaxWidth(),
+            progress = AppState::scrollProgress,
+            drawStopIndicator = {},
+        )
         TextField(
             modifier = Modifier
                 .weight(1F)

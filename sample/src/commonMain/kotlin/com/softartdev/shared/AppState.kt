@@ -20,6 +20,9 @@ object AppState {
     val textState: MutableState<String> = mutableStateOf(readMe)
     val scrollState: ScrollState = ScrollState(initial = 0)
 
+    val scrollProgress: Float
+        get() = scrollState.value.toFloat() / scrollState.maxValue.toFloat()
+
     val secondaryText: String
         @Composable get() = stringResource(
             resource = when (showMaterial3.value) {
