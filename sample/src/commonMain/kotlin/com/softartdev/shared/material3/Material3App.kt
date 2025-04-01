@@ -1,5 +1,6 @@
 package com.softartdev.shared.material3
 
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -25,7 +26,7 @@ fun Material3App(
 ) = PreferableMaterialTheme { // provides composition locals
     EnableEdgeToEdge(material3 = true, inDark = themePrefs.inDark)
     NavHost(
-        modifier = modifier,
+        modifier = modifier.imePadding(),
         navController = navController,
         startDestination = navController.currentDestination?.route ?: AppNavGraph.Settings.name,
         route = "Material3App"
