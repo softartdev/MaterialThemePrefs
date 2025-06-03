@@ -27,7 +27,7 @@ kotlin {
         commonMain.dependencies {
             api(compose.runtime)
             api(compose.components.resources)
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

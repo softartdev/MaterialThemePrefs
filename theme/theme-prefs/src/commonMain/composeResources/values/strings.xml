@@ -8,10 +8,9 @@
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="cancel">Cancel</string>
-    <string name="set_by_byttery_saver">Set by Battery Saver</string>
+    <string name="set_by_battery_saver">Set by Battery Saver</string>
     <string name="error_title">Error</string>
     <string name="ok">OK</string>
-    <string name="material_version">Material version</string>
-    <string name="switch_to_material_design_2">Switch to Material Design 2</string>
+    <string name="material_design_version">Material Design version</string>
     <string name="switch_to_material_design_3">Switch to Material Design 3</string>
 </resources>

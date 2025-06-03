@@ -5,7 +5,8 @@ plugins {
     kotlin("multiplatform")
     id("com.android.application")
     id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
+    kotlin("plugin.compose")
+    kotlin("plugin.serialization")
 }
 
 kotlin {
@@ -24,12 +25,6 @@ kotlin {
         }
     }
     sourceSets {
-        val desktopMain by getting
-        
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation("androidx.activity:activity-compose:1.10.1")
-        }
         commonMain.dependencies {
             api(project(":theme:theme-material"))
             api(project(":theme:theme-material3"))
@@ -39,8 +34,14 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta02")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
         }
+        androidMain.dependencies {
+            implementation("androidx.activity:activity-compose:1.10.1")
+            implementation(compose.preview)
+        }
+        val desktopMain by getting
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
         }

@@ -29,9 +29,14 @@ kotlin {
             api(compose.foundation)
             api(compose.material)
             api(compose.materialIconsExtended)
+            implementation(compose.components.uiToolingPreview)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
+        }
+        androidMain.dependencies {
+            implementation(compose.preview)
+            implementation("androidx.compose.ui:ui-tooling:1.8.2")
         }
     }
     explicitApi()

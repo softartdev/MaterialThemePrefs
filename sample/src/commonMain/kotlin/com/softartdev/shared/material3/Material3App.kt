@@ -9,11 +9,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import com.softartdev.shared.AppNavGraph
+import com.softartdev.shared.DesignNavGraph
 import com.softartdev.shared.EnableEdgeToEdge
 import com.softartdev.shared.inDark
 import com.softartdev.theme.material3.PreferableMaterialTheme
-import com.softartdev.theme.material3.ThemeDialog
-import com.softartdev.theme.pref.PreferenceHelper
+import com.softartdev.theme.material3.ThemeDialogContent
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 
@@ -28,27 +28,22 @@ fun Material3App(
     NavHost(
         modifier = modifier.imePadding(),
         navController = navController,
-        startDestination = navController.currentDestination?.route ?: AppNavGraph.Settings.name,
-        route = "Material3App"
+        startDestination = AppNavGraph.from(navController.currentDestination?.route),
+        route = DesignNavGraph.Material3App::class
     ) {
-        composable(route = AppNavGraph.Settings.name) {
+        composable<AppNavGraph.Settings> {
             SettingsBody(
-                onBackClick = { navController.navigate(route = AppNavGraph.NoteDetail.name) },
-                onThemeClick = { navController.navigate(route = AppNavGraph.ThemeDialog.name) }
+                onBackClick = { navController.navigate(route = AppNavGraph.NoteDetail) },
+                onThemeClick = { navController.navigate(route = AppNavGraph.ThemeDialog) }
             )
         }
-        composable(route = AppNavGraph.NoteDetail.name) {
+        composable<AppNavGraph.NoteDetail> {
             NoteDetailBody(
-                onBackClick = { navController.navigate(route = AppNavGraph.Settings.name) }
+                onBackClick = { navController.navigate(route = AppNavGraph.Settings) }
             )
         }
-        dialog(route = AppNavGraph.ThemeDialog.name) {
-            val preferenceHelper: PreferenceHelper = themePrefs.preferenceHelper
-            ThemeDialog(
-                darkThemeState = themePrefs.darkThemeState,
-                writePref = preferenceHelper::themeEnum::set,
-                dismissDialog = navController::navigateUp,
-            )
+        dialog<AppNavGraph.ThemeDialog> {
+            ThemeDialogContent(dismissDialog = navController::popBackStack)
         }
     }
 }

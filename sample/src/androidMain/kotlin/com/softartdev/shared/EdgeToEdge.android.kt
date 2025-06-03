@@ -2,6 +2,7 @@ package com.softartdev.shared
 
 import android.app.Activity
 import android.graphics.Color
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
@@ -12,7 +13,7 @@ import androidx.core.view.WindowCompat
 @Composable
 actual fun EnableEdgeToEdge(material3: Boolean, inDark: Boolean) {
     val activity: Activity = LocalActivity.current ?: return
-    if (material3) {
+    if (material3 || Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
         val componentActivity = activity as? ComponentActivity ?: return
         val scrimLight: Int = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
         val scrimDark: Int = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
@@ -23,5 +24,6 @@ actual fun EnableEdgeToEdge(material3: Boolean, inDark: Boolean) {
         componentActivity.enableEdgeToEdge(statusBarStyle = sbStyle, navigationBarStyle = sbStyle)
     } else {
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+        activity.window.isStatusBarContrastEnforced = true
     }
 }

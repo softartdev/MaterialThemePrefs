@@ -4,6 +4,7 @@ package com.softartdev.theme.material3
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -13,10 +14,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import io.github.softartdev.theme_prefs.generated.resources.Res
 import io.github.softartdev.theme_prefs.generated.resources.settings
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 public fun SettingsScaffold(
@@ -43,3 +46,16 @@ public fun SettingsTopAppBar(
     },
     actions = actions
 )
+
+@Preview
+@Composable
+public fun SettingsScaffoldPreview() {
+    PreferableMaterialTheme {
+        SettingsScaffold { paddingValues ->
+            Text(
+                modifier = Modifier.padding(paddingValues),
+                text = stringResource(Res.string.settings),
+            )
+        }
+    }
+}

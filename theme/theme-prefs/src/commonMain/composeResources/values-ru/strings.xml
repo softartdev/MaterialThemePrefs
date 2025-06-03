@@ -8,10 +8,9 @@
     <string name="light">Светлая</string>
     <string name="dark">Тёмная</string>
     <string name="cancel">Отмена</string>
-    <string name="set_by_byttery_saver">Автоматически</string>
+    <string name="set_by_battery_saver">Автоматически</string>
     <string name="error_title">Ошибка</string>
     <string name="ok">OK</string>
-    <string name="material_version">Версия Material</string>
-    <string name="switch_to_material_design_2">Переключить на Material Design 2</string>
+    <string name="material_design_version">Версия Material Design</string>
     <string name="switch_to_material_design_3">Переключить на Material Design 3</string>
 </resources>

@@ -12,12 +12,14 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.softartdev.theme.pref.ThemeEnum
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 public fun RadioDialogContent(darkThemeState: MutableState<ThemeEnum>) {
@@ -46,5 +48,13 @@ public fun RadioDialogContent(darkThemeState: MutableState<ThemeEnum>) {
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun RadioDialogContentPreview() {
+    PreferableMaterialTheme {
+        RadioDialogContent(darkThemeState = mutableStateOf(ThemeEnum.SystemDefault))
     }
 }

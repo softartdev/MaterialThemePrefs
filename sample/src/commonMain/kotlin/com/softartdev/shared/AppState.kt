@@ -10,10 +10,6 @@ import com.softartdev.theme.pref.LocalThemePrefs
 import com.softartdev.theme.pref.PreferableMaterialTheme.themePrefs
 import com.softartdev.theme.pref.ThemeEnum
 import com.softartdev.theme.pref.ThemePrefs
-import io.github.softartdev.theme_prefs.generated.resources.Res
-import io.github.softartdev.theme_prefs.generated.resources.switch_to_material_design_2
-import io.github.softartdev.theme_prefs.generated.resources.switch_to_material_design_3
-import org.jetbrains.compose.resources.stringResource
 
 object AppState {
     val showMaterial3: MutableState<Boolean> = mutableStateOf(false)
@@ -22,14 +18,6 @@ object AppState {
 
     val scrollProgress: Float
         get() = scrollState.value.toFloat() / scrollState.maxValue.toFloat()
-
-    val secondaryText: String
-        @Composable get() = stringResource(
-            resource = when (showMaterial3.value) {
-                true -> Res.string.switch_to_material_design_2
-                false -> Res.string.switch_to_material_design_3
-            }
-        )
 
     val isDarkTheme: Boolean
         @Composable

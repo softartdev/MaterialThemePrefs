@@ -20,6 +20,7 @@ import io.github.softartdev.theme_prefs.generated.resources.Res
 import io.github.softartdev.theme_prefs.generated.resources.choose_theme
 import io.github.softartdev.theme_prefs.generated.resources.theme
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 public fun ThemePreferencesCategory(): Unit = PreferenceCategory(
@@ -62,3 +63,15 @@ public fun PreferenceItem(
     secondaryText = secondaryText,
     trailing = trailing
 )
+
+@Preview
+@Composable
+public fun ThemePreferencesCategoryPreview() {
+    ThemePreferencesCategory()
+}
+
+@Preview
+@Composable
+public fun ThemePreferenceItemPreview() {
+    PreferableMaterialTheme { ThemePreferenceItem() }
+}

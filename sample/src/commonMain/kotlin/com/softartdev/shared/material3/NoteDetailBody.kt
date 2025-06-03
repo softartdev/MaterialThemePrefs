@@ -26,8 +26,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.softartdev.shared.AppState
+import com.softartdev.theme.material.PreferableMaterialTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
 
@@ -44,7 +47,7 @@ fun NoteDetailBody(
 ) = Scaffold(
     topBar = {
         TopAppBar(
-            title = { Text(text = "Title", maxLines = 1) },
+            title = { Text(text = "Material Theme Prefs", maxLines = 1, overflow = TextOverflow.Ellipsis) },
             navigationIcon = {
                 IconButton(onClick = onBackClick) {
                     Icon(
@@ -85,4 +88,10 @@ fun barActions(): @Composable (RowScope.() -> Unit) = {
     IconButton(onClick = AppState.switchThemeCallback) {
         Icon(imageVector = Icons.Default.SettingsBrightness, contentDescription = null)
     }
+}
+
+@Preview
+@Composable
+fun NoteDetailBodyPreview() {
+    PreferableMaterialTheme { NoteDetailBody() }
 }
