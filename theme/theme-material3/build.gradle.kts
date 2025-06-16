@@ -23,6 +23,10 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    wasmJs {
+        browser()
+        binaries.executable()
+    }
     sourceSets {
         commonMain.dependencies {
             api(project(":theme:theme-prefs"))

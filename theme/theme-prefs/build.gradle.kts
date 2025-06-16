@@ -21,6 +21,10 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    wasmJs {
+        browser()
+        binaries.executable()
+    }
     applyDefaultHierarchyTemplate()
 
     sourceSets {
@@ -34,6 +38,9 @@ kotlin {
         }
         androidMain.dependencies {
             api(compose.ui)
+        }
+        wasmJsMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
         }
     }
     explicitApi()

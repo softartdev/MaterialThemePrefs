@@ -8,6 +8,7 @@ Supported platforms:
 - Android
 - iOS
 - Desktop JVM (MacOS, Linux, Windows)
+- Web (wasm JS)
 
 ![Android screenshot](doc/screenshots/gif/android/material_design_3/demo.gif)
 ![iOS screenshot](doc/screenshots/gif/iOS/material_design_3/demo.gif)
@@ -103,6 +104,13 @@ private val preferences: NSUserDefaults = NSUserDefaults.standardUserDefaults
 actual var themeEnum: ThemeEnum
     get() = preferences.integerForKey(THEME_KEY).let(ThemeEnum.values()::get)
     set(value) = preferences.setInteger(value.ordinal, THEME_KEY)
+
+// wasm js:
+private val storage: Storage = window.localStorage
+
+actual var themeEnum: ThemeEnum
+    get() = storage.getItem(THEME_KEY)?.toIntOrNull()?.let(ThemeEnum.values()::get) ?: ThemeEnum.SystemDefault
+    set(value) = storage.setItem(THEME_KEY, value.ordinal.toString())
 ```
 Also used [composition local](https://developer.android.com/jetpack/compose/compositionlocal) for access from theme-scoped as an implicit way:
 ```kotlin
