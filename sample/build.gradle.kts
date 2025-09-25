@@ -1,4 +1,7 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
@@ -26,7 +29,7 @@ kotlin {
         }
     }
     wasmJs {
-        moduleName = "composeApp"
+        outputModuleName.set("composeApp")
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -53,11 +56,11 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta02")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
         }
         androidMain.dependencies {
-            implementation("androidx.activity:activity-compose:1.10.1")
+            implementation("androidx.activity:activity-compose:1.11.0")
             implementation(compose.preview)
         }
         val desktopMain by getting

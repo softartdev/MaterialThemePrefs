@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
 import com.android.build.gradle.internal.lint.AndroidLintAnalysisTask
 import com.android.build.gradle.internal.lint.LintModelWriterTask
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -40,7 +43,7 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(compose.preview)
-            implementation("androidx.compose.ui:ui-tooling:1.8.2")
+            implementation("androidx.compose.ui:ui-tooling:1.9.2")
         }
     }
     explicitApi()
