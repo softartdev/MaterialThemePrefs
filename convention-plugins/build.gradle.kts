@@ -7,5 +7,5 @@ repositories {
 }
 
 dependencies {
-    implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
+    implementation("com.vanniktech:gradle-maven-publish-plugin:0.34.0")
 }

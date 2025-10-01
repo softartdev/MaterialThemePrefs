@@ -27,6 +27,6 @@ jobs:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
       - name: Build
         run: ./gradlew build
-      - name: Publish
+      - name: Publish and Release to Maven Central
         continue-on-error: true
-        run: ./gradlew publishAllPublicationsToSonatypeRepository --max-workers 1 closeAndReleaseRepository
+        run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
