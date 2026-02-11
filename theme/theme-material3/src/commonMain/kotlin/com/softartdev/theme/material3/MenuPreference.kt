@@ -11,13 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import com.softartdev.theme.pref.LocalThemePrefs
-import io.github.softartdev.theme_prefs.generated.resources.Res
 import com.softartdev.theme.pref.ThemePrefs
+import io.github.softartdev.theme_prefs.generated.resources.Res
 import io.github.softartdev.theme_prefs.generated.resources.choose_theme
 import io.github.softartdev.theme_prefs.generated.resources.theme
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 public fun ThemePreferencesCategory(): Unit = PreferenceCategory(

@@ -6,7 +6,10 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import com.softartdev.theme.pref.*
+import com.softartdev.theme.pref.LocalThemePrefs
+import com.softartdev.theme.pref.PreferableMaterialTheme
+import com.softartdev.theme.pref.PreferenceHelper
+import com.softartdev.theme.pref.rememberPreferenceHelper
 
 @Composable
 public fun PreferableMaterialTheme(

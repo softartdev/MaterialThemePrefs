@@ -1,27 +1,32 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
-import com.android.build.gradle.internal.lint.AndroidLintAnalysisTask
-import com.android.build.gradle.internal.lint.LintModelWriterTask
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.compose.compiler)
+    alias(libs.plugins.compose.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     id("convention.publication")
 }
+
 group = project.property("GROUP").toString()
 version = project.property("VERSION").toString()
 
 kotlin {
-    jvmToolchain(rootProject.extra["jdk_version"] as Int)
+    jvmToolchain(libs.versions.jdk.get().toInt())
     jvm("desktop") {
-        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
+        compilerOptions.jvmTarget = JvmTarget.fromTarget(libs.versions.jdk.get())
     }
-    androidTarget {
-        publishLibraryVariants("release", "debug")
+    android {
+        namespace = "com.softartdev.theme.material"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+        withJava()
+        compilerOptions {
+            jvmTarget = JvmTarget.fromTarget(libs.versions.jdk.get())
+        }
     }
     iosX64()
     iosArm64()
@@ -32,38 +37,22 @@ kotlin {
     }
     sourceSets {
         commonMain.dependencies {
-            api(project(":theme:theme-prefs"))
-            api(compose.foundation)
-            api(compose.material)
-            api(compose.materialIconsExtended)
-            implementation(compose.components.uiToolingPreview)
+            api(projects.theme.themePrefs)
+            api(libs.compose.foundation)
+            api(libs.compose.material)
+            api(libs.compose.material.icons.extended)
+            implementation(libs.compose.ui.tooling.preview)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
         androidMain.dependencies {
-            implementation(compose.preview)
-            implementation("androidx.compose.ui:ui-tooling:1.9.2")
+            implementation(libs.compose.ui.tooling)
         }
     }
     explicitApi()
 }
-android {
-    compileSdk = rootProject.extra["android_compile_sdk_version"] as Int
-    defaultConfig.minSdk = rootProject.extra["android_min_sdk_version"] as Int
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
-        targetCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
-    }
-    namespace = "com.softartdev.theme.material"
-}
+
 tasks.withType<AbstractPublishToMaven>().configureEach {
     dependsOn(tasks.withType<Sign>())
-}
-tasks.withType<AndroidLintAnalysisTask>{
-    dependsOn("generateResourceAccessorsForAndroidUnitTest")
-}
-tasks.withType<LintModelWriterTask>{
-    dependsOn("generateResourceAccessorsForAndroidUnitTest")
 }

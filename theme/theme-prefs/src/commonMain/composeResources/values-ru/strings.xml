@@ -13,4 +13,7 @@
     <string name="ok">OK</string>
     <string name="material_design_version">Версия Material Design</string>
     <string name="switch_to_material_design_3">Переключить на Material Design 3</string>
+    <string name="info">Информация</string>
+    <string name="pref_title_source_code">Исходный код</string>
+    <string name="pref_subtitle_open_github">Открыть на GitHub</string>
 </resources>

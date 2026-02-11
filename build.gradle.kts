@@ -1,24 +1,8 @@
-buildscript {
-    extra["kotlin_version"] = "2.2.10"
-    extra["android_min_sdk_version"] = 21
-    extra["android_compile_sdk_version"] = 36
-    extra["jdk_version"] = 17
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.extra["kotlin_version"]}")
-        classpath("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${rootProject.extra["kotlin_version"]}")
-        classpath("com.android.tools.build:gradle:8.13.0")
-        classpath("org.jetbrains.compose:compose-gradle-plugin:1.9.0")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:${rootProject.extra["kotlin_version"]}")
-    }
-}
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+plugins {
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.compose.compiler) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.kotlin.multiplatform.library) apply false
+    alias(libs.plugins.compose.multiplatform) apply false
 }

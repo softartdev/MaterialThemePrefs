@@ -1,0 +1,91 @@
+package com.softartdev.shared.material
+
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.SettingsBrightness
+import androidx.compose.material.icons.filled.Style
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.softartdev.shared.AppState
+import com.softartdev.theme.material.PreferableMaterialTheme
+import kotlin.experimental.ExperimentalObjCRefinement
+import kotlin.native.HiddenFromObjC
+
+@OptIn(ExperimentalObjCRefinement::class)
+@HiddenFromObjC
+@Composable
+fun NoteDetailBody(
+    textFieldState: TextFieldState = rememberSaveable(
+        saver = TextFieldState.Saver,
+        init = AppState::textFieldState
+    ),
+    onBackClick: () -> Unit = {},
+    scrollState: ScrollState = rememberSaveable(
+        saver = ScrollState.Saver,
+        init = AppState::scrollState
+    ),
+) = Scaffold(
+    topBar = {
+        TopAppBar(
+            title = { Text(text = "Material Theme Prefs", maxLines = 1, overflow = TextOverflow.Ellipsis) },
+            navigationIcon = {
+                IconButton(onClick = onBackClick) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = null
+                    )
+                }
+            },
+            actions = barActions()
+        )
+    }) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        LinearProgressIndicator(
+            modifier = Modifier.fillMaxWidth(),
+            progress = AppState.scrollProgress,
+        )
+        TextField(
+            modifier = Modifier
+                .weight(1F)
+                .fillMaxWidth()
+                .padding(8.dp)
+                .verticalScroll(state = scrollState),
+            label = { Text("Type text") },
+            state = textFieldState
+        )
+    }
+}
+
+fun barActions(): @Composable (RowScope.() -> Unit) = {
+    IconButton(onClick = AppState.switchMaterialCallback) {
+        Icon(imageVector = Icons.Default.Style, contentDescription = null)
+    }
+    IconButton(onClick = AppState.switchThemeCallback) {
+        Icon(imageVector = Icons.Default.SettingsBrightness, contentDescription = null)
+    }
+}
+
+@Preview
+@Composable
+fun NoteDetailBodyPreview() {
+    PreferableMaterialTheme { NoteDetailBody() }
+}

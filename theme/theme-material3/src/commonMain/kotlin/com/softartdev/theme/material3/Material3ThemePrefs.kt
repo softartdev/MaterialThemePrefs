@@ -7,7 +7,10 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
-import com.softartdev.theme.pref.*
+import com.softartdev.theme.pref.PreferenceHelper
+import com.softartdev.theme.pref.ThemeEnum
+import com.softartdev.theme.pref.ThemePrefs
+import com.softartdev.theme.pref.rememberPreferenceHelper
 
 public class Material3ThemePrefs(
     preferenceHelper: PreferenceHelper,

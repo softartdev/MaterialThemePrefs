@@ -4,22 +4,32 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.compose.multiplatform)
+    alias(libs.plugins.kotlin.compose.compiler)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     id("convention.publication")
 }
+
 group = project.property("GROUP").toString()
 version = project.property("VERSION").toString()
 
 kotlin {
-    jvmToolchain(rootProject.extra["jdk_version"] as Int)
+    jvmToolchain(libs.versions.jdk.get().toInt())
     jvm("desktop") {
-        compilerOptions.jvmTarget = JvmTarget.fromTarget("${rootProject.extra["jdk_version"]}")
+        compilerOptions.jvmTarget = JvmTarget.fromTarget(libs.versions.jdk.get())
     }
-    androidTarget {
-        publishLibraryVariants("release", "debug")
+    android {
+        namespace = "com.softartdev.theme.pref"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+        withJava()
+        androidResources {
+            enable = true
+        }
+        compilerOptions {
+            jvmTarget = JvmTarget.fromTarget(libs.versions.jdk.get())
+        }
     }
     iosX64()
     iosArm64()
@@ -32,33 +42,23 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(compose.runtime)
-            api(compose.components.resources)
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+            api(libs.compose.runtime)
+            api(libs.compose.components.resources)
+            implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
         androidMain.dependencies {
-            api(compose.ui)
+            api(libs.compose.ui)
         }
         wasmJsMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
+            implementation(libs.kotlinx.browser)
         }
     }
     explicitApi()
 }
-android {
-    compileSdk = rootProject.extra["android_compile_sdk_version"] as Int
-    defaultConfig.minSdk = rootProject.extra["android_min_sdk_version"] as Int
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDir(File(layout.buildDirectory.get().asFile, "generated/moko/androidMain/res"))
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
-        targetCompatibility = JavaVersion.toVersion(rootProject.extra["jdk_version"] as Int)
-    }
-    namespace = "com.softartdev.theme.pref"
-}
+
 compose.resources {
     publicResClass = true
 }

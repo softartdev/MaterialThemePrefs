@@ -36,13 +36,13 @@ jobs:
           cache-read-only: false
           cache-overwrite-existing: true
       - name: "Build WasmJS App"
-        run: gradle :sample:wasmJsBrowserDistribution
+        run: gradle --no-configure-on-demand :sample:web:wasmJsBrowserDistribution
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./sample/build/dist/wasmJs/productionExecutable
+          path: ./sample/web/build/dist/wasmJs/productionExecutable
 
   deploy:
     environment:

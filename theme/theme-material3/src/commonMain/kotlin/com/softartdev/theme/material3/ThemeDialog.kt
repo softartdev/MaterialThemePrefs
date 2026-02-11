@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.softartdev.theme.pref.PreferableMaterialTheme.themePrefs
@@ -34,7 +35,6 @@ import io.github.softartdev.theme_prefs.generated.resources.cancel
 import io.github.softartdev.theme_prefs.generated.resources.choose_theme
 import io.github.softartdev.theme_prefs.generated.resources.ok
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * AlertDialog for selecting a theme.

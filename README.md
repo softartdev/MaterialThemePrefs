@@ -54,7 +54,7 @@ fun App() = PreferableMaterialTheme {
     }
 }
 ```
-Check the [sample app](sample/src/commonMain/kotlin/com/softartdev/shared/App.kt) for using with Material Design versions 2 & 3.
+Check the [sample app](sample/shared/src/commonMain/kotlin/com/softartdev/shared/App.kt) for using with Material Design versions 2 & 3.
 
 The [NoteDelight](https://github.com/softartdev/NoteDelight/blob/master/shared-compose-ui/src/commonMain/kotlin/com/softartdev/notedelight/ui/SettingsScreen.kt#L104) app is a real example.   
 ## Installation
