@@ -23,7 +23,7 @@ object AppState {
     val isDarkTheme: Boolean
         @Composable
         @ReadOnlyComposable
-        get() = when (themePrefs.darkThemeState.value) {
+        get() = when (themePrefs.themeState.value) {
             ThemeEnum.Light -> false
             ThemeEnum.Dark -> true
             ThemeEnum.SystemDefault -> isSystemInDarkTheme()
@@ -35,11 +35,11 @@ object AppState {
         get() {
             val currentIsDark: Boolean = isDarkTheme
             val themePrefs: ThemePrefs = LocalThemePrefs.current
-            val darkThemeState = themePrefs.darkThemeState
+            val themeState = themePrefs.themeState
             val prefHelper = themePrefs.preferenceHelper
             return {
-                darkThemeState.value = if (currentIsDark) ThemeEnum.Light else ThemeEnum.Dark
-                prefHelper.themeEnum = darkThemeState.value
+                themeState.value = if (currentIsDark) ThemeEnum.Light else ThemeEnum.Dark
+                prefHelper.themeEnum = themeState.value
             }
         }
 

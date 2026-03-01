@@ -40,30 +40,30 @@ import org.jetbrains.compose.resources.stringResource
  * AlertDialog for selecting a theme.
  * Should use directly in the composable destination that wants to show that dialog.
  *
- * @param darkThemeState MutableState of the current theme.
+ * @param themeState MutableState of the current theme.
  * @param writePref Function to write the selected theme to preferences.
  * @param dismissDialog Function to dismiss the dialog.
  */
 @Composable
 public fun ThemeAlertDialog(
-    darkThemeState: MutableState<ThemeEnum> = themePrefs.darkThemeState,
+    themeState: MutableState<ThemeEnum> = themePrefs.themeState,
     writePref: (ThemeEnum) -> Unit = themePrefs.preferenceHelper.let { it::themeEnum::set },
     dismissDialog: () -> Unit = {}
 ) {
-    val previousState = remember { darkThemeState.value }
+    val previousState = remember { themeState.value }
     AlertDialog(
         onDismissRequest = dismissDialog,
         title = { Text(stringResource(Res.string.choose_theme)) },
-        text = { RadioDialogContent(darkThemeState) },
+        text = { RadioDialogContent(themeState) },
         confirmButton = {
             Button(onClick = {
-                writePref(darkThemeState.value)
+                writePref(themeState.value)
                 dismissDialog()
             }) { Text(stringResource(Res.string.ok)) }
         },
         dismissButton = {
             Button(onClick = {
-                darkThemeState.value = previousState
+                themeState.value = previousState
                 dismissDialog()
             }) { Text(stringResource(Res.string.cancel)) }
         },
@@ -74,29 +74,29 @@ public fun ThemeAlertDialog(
  * Dialog layout for selecting a theme. Represents a separate screen.
  * Should use in the dialog destination that will be hosted within a [androidx.compose.ui.window.Dialog].
  *
- * @param darkThemeState MutableState of the current theme.
+ * @param themeState MutableState of the current theme.
  * @param writePref Function to write the selected theme to preferences.
  * @param dismissDialog Function to dismiss the dialog.
  */
 @Composable
 public fun ThemeDialogContent(
-    darkThemeState: MutableState<ThemeEnum> = themePrefs.darkThemeState,
+    themeState: MutableState<ThemeEnum> = themePrefs.themeState,
     writePref: (ThemeEnum) -> Unit = themePrefs.preferenceHelper.let { it::themeEnum::set },
     dismissDialog: () -> Unit = {}
 ) {
-    val previousState = remember { darkThemeState.value }
+    val previousState = remember { themeState.value }
     MaterialAlertDialogContent(
         title = { Text(stringResource(Res.string.choose_theme)) },
-        text = { RadioDialogContent(darkThemeState) },
+        text = { RadioDialogContent(themeState) },
         confirmButton = {
             Button(onClick = {
-                writePref(darkThemeState.value)
+                writePref(themeState.value)
                 dismissDialog()
             }) { Text(stringResource(Res.string.ok)) }
         },
         dismissButton = {
             Button(onClick = {
-                darkThemeState.value = previousState
+                themeState.value = previousState
                 dismissDialog()
             }) { Text(stringResource(Res.string.cancel)) }
         },

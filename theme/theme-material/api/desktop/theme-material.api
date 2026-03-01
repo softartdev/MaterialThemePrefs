@@ -1,0 +1,78 @@
+public final class com/softartdev/theme/material/ComposableSingletons$MenuPreferenceKt {
+	public static final field INSTANCE Lcom/softartdev/theme/material/ComposableSingletons$MenuPreferenceKt;
+	public fun <init> ()V
+	public final fun getLambda$1700624278$theme_material ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/softartdev/theme/material/ComposableSingletons$RadioDialogContentKt {
+	public static final field INSTANCE Lcom/softartdev/theme/material/ComposableSingletons$RadioDialogContentKt;
+	public fun <init> ()V
+	public final fun getLambda$413568853$theme_material ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/softartdev/theme/material/ComposableSingletons$SettingsScaffoldKt {
+	public static final field INSTANCE Lcom/softartdev/theme/material/ComposableSingletons$SettingsScaffoldKt;
+	public fun <init> ()V
+	public final fun getLambda$-1685304820$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-380602370$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1693097461$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$966324864$theme_material ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/softartdev/theme/material/ComposableSingletons$ThemeDialogKt {
+	public static final field INSTANCE Lcom/softartdev/theme/material/ComposableSingletons$ThemeDialogKt;
+	public fun <init> ()V
+	public final fun getLambda$-1032548797$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1615721602$theme_material ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-900225052$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1546299776$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$442410925$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$478254931$theme_material ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$848923926$theme_material ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$987283499$theme_material ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/softartdev/theme/material/MaterialThemePrefs : com/softartdev/theme/pref/ThemePrefs {
+	public static final field $stable I
+	public fun <init> (Lcom/softartdev/theme/pref/PreferenceHelper;Landroidx/compose/material/Colors;Landroidx/compose/material/Colors;)V
+	public synthetic fun <init> (Lcom/softartdev/theme/pref/PreferenceHelper;Landroidx/compose/material/Colors;Landroidx/compose/material/Colors;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getColors (Landroidx/compose/runtime/Composer;I)Landroidx/compose/material/Colors;
+}
+
+public final class com/softartdev/theme/material/MaterialThemePrefsKt {
+	public static final fun getColors (Lcom/softartdev/theme/pref/ThemePrefs;Landroidx/compose/runtime/Composer;I)Landroidx/compose/material/Colors;
+	public static final fun rememberThemePrefs (Landroidx/compose/runtime/Composer;I)Lcom/softartdev/theme/material/MaterialThemePrefs;
+	public static final fun rememberThemePrefs (Lcom/softartdev/theme/pref/PreferenceHelper;Landroidx/compose/material/Colors;Landroidx/compose/material/Colors;Landroidx/compose/runtime/Composer;II)Lcom/softartdev/theme/material/MaterialThemePrefs;
+}
+
+public final class com/softartdev/theme/material/MenuPreferenceKt {
+	public static final fun PreferenceCategory (Ljava/lang/String;Landroidx/compose/ui/graphics/vector/ImageVector;Landroidx/compose/runtime/Composer;I)V
+	public static final fun PreferenceItem (Ljava/lang/String;Landroidx/compose/ui/graphics/vector/ImageVector;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ThemePreferenceItem (Lcom/softartdev/theme/pref/ThemePrefs;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ThemePreferenceItemPreview (Landroidx/compose/runtime/Composer;I)V
+	public static final fun ThemePreferencesCategory (Landroidx/compose/runtime/Composer;I)V
+	public static final fun ThemePreferencesCategoryPreview (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/softartdev/theme/material/PreferableMaterialThemeKt {
+	public static final fun PreferableMaterialTheme (Lcom/softartdev/theme/pref/PreferenceHelper;Landroidx/compose/material/Colors;Landroidx/compose/material/Colors;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/softartdev/theme/material/RadioDialogContentKt {
+	public static final fun RadioDialogContent (Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class com/softartdev/theme/material/SettingsScaffoldKt {
+	public static final fun SettingsScaffold (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun SettingsScaffoldPreview (Landroidx/compose/runtime/Composer;I)V
+	public static final fun SettingsTopAppBar (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Landroidx/compose/ui/graphics/vector/ImageVector;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/softartdev/theme/material/ThemeDialogKt {
+	public static final fun MaterialAlertDialogContent-SxpAMN0 (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/ui/graphics/Shape;JJLandroidx/compose/runtime/Composer;II)V
+	public static final fun ThemeAlertDialog (Landroidx/compose/runtime/MutableState;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ThemeDialogContent (Landroidx/compose/runtime/MutableState;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ThemeDialogContentPreview (Landroidx/compose/runtime/Composer;I)V
+	public static final fun ThemeDialogPreview (Landroidx/compose/runtime/Composer;I)V
+}
+

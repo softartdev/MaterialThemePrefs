@@ -11,6 +11,14 @@ import com.softartdev.theme.pref.PreferableMaterialTheme
 import com.softartdev.theme.pref.PreferenceHelper
 import com.softartdev.theme.pref.rememberPreferenceHelper
 
+/**
+ * Material 3 theme that respects stored light/dark preference and provides [ThemePrefs] via [LocalThemePrefs].
+ *
+ * @param preferHelper Backing storage for theme; defaults to [rememberPreferenceHelper].
+ * @param darkColorScheme Color scheme when dark theme is active.
+ * @param lightColorScheme Color scheme when light theme is active.
+ * @param content Composable content with access to [PreferableMaterialTheme.themePrefs].
+ */
 @Composable
 public fun PreferableMaterialTheme(
     preferHelper: PreferenceHelper = rememberPreferenceHelper(),

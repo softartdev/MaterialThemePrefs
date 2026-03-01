@@ -1,0 +1,96 @@
+public final class com/softartdev/theme/pref/PreferableMaterialTheme {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/softartdev/theme/pref/PreferableMaterialTheme;
+	public final fun getThemePrefs (Landroidx/compose/runtime/Composer;I)Lcom/softartdev/theme/pref/ThemePrefs;
+}
+
+public abstract interface class com/softartdev/theme/pref/PreferenceHelper {
+	public abstract fun clear ()V
+	public abstract fun getThemeEnum ()Lcom/softartdev/theme/pref/ThemeEnum;
+	public abstract fun setThemeEnum (Lcom/softartdev/theme/pref/ThemeEnum;)V
+}
+
+public final class com/softartdev/theme/pref/PreferenceHelperKt {
+	public static final fun rememberPreferenceHelper (Landroidx/compose/runtime/Composer;I)Lcom/softartdev/theme/pref/PreferenceHelper;
+}
+
+public final class com/softartdev/theme/pref/ThemeEnum : java/lang/Enum {
+	public static final field Dark Lcom/softartdev/theme/pref/ThemeEnum;
+	public static final field Light Lcom/softartdev/theme/pref/ThemeEnum;
+	public static final field SystemDefault Lcom/softartdev/theme/pref/ThemeEnum;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getStringRes ()Lorg/jetbrains/compose/resources/StringResource;
+	public static fun valueOf (Ljava/lang/String;)Lcom/softartdev/theme/pref/ThemeEnum;
+	public static fun values ()[Lcom/softartdev/theme/pref/ThemeEnum;
+}
+
+public abstract class com/softartdev/theme/pref/ThemePrefs {
+	public static final field $stable I
+	public fun <init> (Lcom/softartdev/theme/pref/PreferenceHelper;)V
+	public final fun getPreferenceHelper ()Lcom/softartdev/theme/pref/PreferenceHelper;
+	public final fun getThemeState ()Landroidx/compose/runtime/MutableState;
+}
+
+public final class com/softartdev/theme/pref/ThemePrefsKt {
+	public static final fun getLocalThemePrefs ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/ActualResourceCollectorsKt {
+	public static final fun getAllDrawableResources (Lio/github/softartdev/theme_prefs/generated/resources/Res;)Ljava/util/Map;
+	public static final fun getAllFontResources (Lio/github/softartdev/theme_prefs/generated/resources/Res;)Ljava/util/Map;
+	public static final fun getAllPluralStringResources (Lio/github/softartdev/theme_prefs/generated/resources/Res;)Ljava/util/Map;
+	public static final fun getAllStringArrayResources (Lio/github/softartdev/theme_prefs/generated/resources/Res;)Ljava/util/Map;
+	public static final fun getAllStringResources (Lio/github/softartdev/theme_prefs/generated/resources/Res;)Ljava/util/Map;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/Res {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/softartdev/theme_prefs/generated/resources/Res;
+	public final fun getUri (Ljava/lang/String;)Ljava/lang/String;
+	public final fun readBytes (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/Res$array {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/softartdev/theme_prefs/generated/resources/Res$array;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/Res$drawable {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/softartdev/theme_prefs/generated/resources/Res$drawable;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/Res$font {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/softartdev/theme_prefs/generated/resources/Res$font;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/Res$plurals {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/softartdev/theme_prefs/generated/resources/Res$plurals;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/Res$string {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/softartdev/theme_prefs/generated/resources/Res$string;
+}
+
+public final class io/github/softartdev/theme_prefs/generated/resources/String0_commonMainKt {
+	public static final fun getCancel (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getChoose_theme (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getDark (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getError_title (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getInfo (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getLight (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getMaterial_design_version (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getMaterial_theme_prefs (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getOk (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getPref_subtitle_open_github (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getPref_title_source_code (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getSet_by_battery_saver (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getSettings (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getSwitch_to_material_design_3 (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getSystem_default (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+	public static final fun getTheme (Lio/github/softartdev/theme_prefs/generated/resources/Res$string;)Lorg/jetbrains/compose/resources/StringResource;
+}
+

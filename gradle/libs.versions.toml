@@ -1,18 +1,19 @@
 [versions]
+jdk = "17"
+agp = "9.0.1"
+compileSdk = "36"
+minSdk = "21"
 kotlin = "2.3.10"
-agp = "9.0.0"
 compose = "1.10.1"
+kotlinx-coroutines = "1.10.2"
+kotlinx-browser = "0.5.0"
 composeMaterial3 = "1.9.0"
 composeMaterialIconsExtended = "1.7.3"
 androidx-navigation = "2.9.2"
-androidx-activity-compose = "1.12.3"
+androidx-activity-compose = "1.12.4"
 kotlinx-serialization-json = "1.10.0"
-kotlinx-coroutines = "1.10.2"
-kotlinx-browser = "0.5.0"
 vanniktech = "0.36.0"
-compileSdk = "36"
-minSdk = "21"
-jdk = "17"
+dokka = "2.1.0"
 
 [libraries]
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
@@ -40,3 +41,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

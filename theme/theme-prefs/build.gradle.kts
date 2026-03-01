@@ -1,13 +1,15 @@
-@file:OptIn(ExperimentalWasmDsl::class)
+@file:OptIn(ExperimentalWasmDsl::class, ExperimentalAbiValidation::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.dokka)
     id("convention.publication")
 }
 
@@ -55,6 +57,10 @@ kotlin {
         wasmJsMain.dependencies {
             implementation(libs.kotlinx.browser)
         }
+    }
+    abiValidation {
+        enabled.set(true)
+        klib.enabled.set(false)
     }
     explicitApi()
 }

@@ -12,7 +12,7 @@ expect fun EnableEdgeToEdge(material3: Boolean, inDark: Boolean)
 val ThemePrefs.inDark: Boolean
     @Composable
     @ReadOnlyComposable
-    get() = when (darkThemeState.value) {
+    get() = when (themeState.value) {
         ThemeEnum.Light -> false
         ThemeEnum.Dark -> true
         ThemeEnum.SystemDefault -> isSystemInDarkTheme()

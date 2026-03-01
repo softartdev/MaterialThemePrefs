@@ -10,6 +10,8 @@ Supported platforms:
 - Desktop JVM (MacOS, Linux, Windows)
 - Web (wasm JS)
 
+**[API Documentation](https://softartdev.github.io/MaterialThemePrefs/docs/)** · **[Web Demo](https://softartdev.github.io/MaterialThemePrefs/demo/)**
+
 ![Android screenshot](doc/screenshots/gif/android/material_design_3/demo.gif)
 ![iOS screenshot](doc/screenshots/gif/iOS/material_design_3/demo.gif)
 ![Desktop screenshot](doc/screenshots/gif/desktop/material_design_3/demo.gif)

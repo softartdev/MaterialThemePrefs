@@ -21,6 +21,13 @@ import io.github.softartdev.theme_prefs.generated.resources.Res
 import io.github.softartdev.theme_prefs.generated.resources.settings
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Scaffold with a top app bar suitable for settings screens (back navigation + optional actions).
+ *
+ * @param onBackClick Called when the back button is clicked.
+ * @param actions Optional trailing actions in the top bar.
+ * @param content Main content with [PaddingValues] for the scaffold insets.
+ */
 @Composable
 public fun SettingsScaffold(
     onBackClick: () -> Unit = {},
@@ -31,6 +38,14 @@ public fun SettingsScaffold(
     content = content
 )
 
+/**
+ * Top app bar with back button and title for settings screens.
+ *
+ * @param onBackClick Called when the back icon is clicked.
+ * @param actions Optional trailing actions.
+ * @param localizedText Title text; defaults to "Settings" string resource.
+ * @param backVector Icon for the back button; defaults to ArrowBack.
+ */
 @Composable
 public fun SettingsTopAppBar(
     onBackClick: () -> Unit = {},
