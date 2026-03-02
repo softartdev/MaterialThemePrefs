@@ -9,9 +9,9 @@ plugins {
 }
 
 dependencies {
-    dokka(project(":theme:theme-prefs"))
-    dokka(project(":theme:theme-material"))
-    dokka(project(":theme:theme-material3"))
+    dokka(projects.theme.themePrefs)
+    dokka(projects.theme.themeMaterial)
+    dokka(projects.theme.themeMaterial3)
 }
 
 dokka {
