@@ -1,7 +1,7 @@
 [versions]
 jdk = "17"
-agp = "9.1.0"
-compileSdk = "36"
+agp = "9.2.0"
+compileSdk = "37"
 minSdk = "21"
 kotlin = "2.3.20"
 compose = "1.10.3"
@@ -11,7 +11,7 @@ composeMaterial3 = "1.9.0"
 composeMaterialIconsExtended = "1.7.3"
 androidx-navigation = "2.9.2"
 androidx-activity-compose = "1.13.0"
-kotlinx-serialization-json = "1.10.0"
+kotlinx-serialization-json = "1.11.0"
 vanniktech = "0.36.0"
 dokka = "2.2.0"
 
