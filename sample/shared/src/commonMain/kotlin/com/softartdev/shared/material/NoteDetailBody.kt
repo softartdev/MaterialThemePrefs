@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.softartdev.shared.AppState
+import com.softartdev.shared.platformKeyboardOptions
 import com.softartdev.theme.material.PreferableMaterialTheme
 import kotlin.experimental.ExperimentalObjCRefinement
 import kotlin.native.HiddenFromObjC
@@ -70,7 +71,8 @@ fun NoteDetailBody(
                 .padding(8.dp)
                 .verticalScroll(state = scrollState),
             label = { Text("Type text") },
-            state = textFieldState
+            state = textFieldState,
+            keyboardOptions = platformKeyboardOptions()
         )
     }
 }

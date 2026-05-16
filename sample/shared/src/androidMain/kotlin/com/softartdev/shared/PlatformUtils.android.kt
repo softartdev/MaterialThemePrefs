@@ -7,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardOptions.Companion
 import androidx.compose.runtime.Composable
 import androidx.core.view.WindowCompat
 
@@ -27,3 +29,5 @@ actual fun EnableEdgeToEdge(material3: Boolean, inDark: Boolean) {
         activity.window.isStatusBarContrastEnforced = true
     }
 }
+
+actual fun platformKeyboardOptions(): KeyboardOptions = KeyboardOptions.Default
