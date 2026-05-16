@@ -6,7 +6,6 @@ plugins {
 
 kotlin {
     listOf(
-//        iosX64(),
 //        iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -15,7 +14,6 @@ kotlin {
             isStatic = true
         }
     }
-
     sourceSets {
         iosMain.dependencies {
             implementation(projects.sample.shared)

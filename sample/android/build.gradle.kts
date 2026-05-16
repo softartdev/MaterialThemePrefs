@@ -6,7 +6,6 @@ plugins {
 android {
     namespace = "com.softartdev.sample"
     compileSdk = libs.versions.compileSdk.get().toInt()
-
     defaultConfig {
         applicationId = "com.softartdev.sample"
         minSdk = 23
@@ -14,15 +13,12 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-
-    buildFeatures {
-        compose = true
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(libs.versions.jdk.get())
         targetCompatibility = JavaVersion.toVersion(libs.versions.jdk.get())
     }
+    buildFeatures.compose = true
+    lint.disable += "Instantiatable"
 }
 
 dependencies {

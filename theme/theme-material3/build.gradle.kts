@@ -30,7 +30,6 @@ kotlin {
             jvmTarget = JvmTarget.fromTarget(libs.versions.jdk.get())
         }
     }
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
     wasmJs {
